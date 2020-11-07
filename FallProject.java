@@ -13,9 +13,9 @@ public class FallProject extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("view/view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/view.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("../view/style.css").toExternalForm());
         
         stage.setTitle("Fractals");
         stage.setScene(scene);
