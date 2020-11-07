@@ -23,5 +23,4 @@ public class FallProject extends Application{
     } 
     
     //Henlo my frends
-    
-}//hai ~~
+}
