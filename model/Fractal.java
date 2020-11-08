@@ -2,11 +2,11 @@ package FallProject.model;
 
 public class Fractal {
     public static double radius = 2;
-    public static int iterationLimit = 400;
+    public static int iterationLimit = 300;
     public static int iterate = 0;
-    public static double scaling = 0.0001;
+    public static double scaling = 0.004;
     
-    public static double k = 0.61;
+    public static double k = 0;
     public static double h = 0.5;
     
     public static void Mandelbrot(double x, double y) {

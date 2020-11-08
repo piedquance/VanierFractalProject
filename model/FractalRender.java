@@ -54,8 +54,13 @@ public class FractalRender {
     
     public static void addColor() {
         
-        int colors = 300;
-        byte[][] gradient = Gradient(colors);           
+        int colors = 72;
+        int[][] gradient = Gradient(colors);    
+        
+//        for(int[] m: gradient){
+//            for(int n: m) System.out.print(n + " ");
+//            System.out.println("");
+//        }
         
          for(int y = 0; y < Plane.grid.length; y++) {
             for(int x = 0; x < Plane.grid[y].length; x++) {
@@ -87,8 +92,8 @@ public class FractalRender {
         }
     }
     
-    public static byte[][] Gradient(int spacing) {
-        byte[][] gradient = new byte[spacing][3];
+    public static int[][] Gradient(int spacing) {
+        int[][] gradient = new int[spacing][3];
         int level;
         int marker = 0;
         int step = (int) Math.ceil(spacing/6);
@@ -97,7 +102,7 @@ public class FractalRender {
             for(int m = 0; m < spacing; m++) {
                 
                 if(m == 0) level = 1;
-                else level = (int) Math.ceil(m/6) + marker*2;
+                else level = (int) Math.ceil(m/6) - marker;
                 if(level > 6) level -= 6;
                 
                 switch(level) {
@@ -106,15 +111,15 @@ public class FractalRender {
                         break;
                         
                     case 3:
-                        gradient[m][n] = (byte)((m%step) * 255 / step);
+                        gradient[m][n] = ((m%step) * 255 / step);
                         break;
                             
                     case 4:case 5:
-                        gradient[m][n] = (byte) 255;
+                        gradient[m][n] =  255;
                         break;
                         
                     case 6:
-                        gradient[m][n] = (byte)(255 - (m%step) * 255 / step);
+                        gradient[m][n] = (255 - (m%step) * 255 / step);
                         break;
                       
                 }
