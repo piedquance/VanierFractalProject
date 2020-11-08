@@ -6,6 +6,9 @@ public class Fractal {
     public static int iterate = 0;
     public static double scaling = 0.006;
     
+    public static double k = 0;
+    public static double h = 0.5;
+    
     public static void Mandelbrot(double x, double y) {
         double outputX, outputY;
         
@@ -16,12 +19,12 @@ public class Fractal {
         
         
         if(Fractal.iterate != 0) {
-            initialY = temp[0]*scaling;
-            initialX = temp[1]*scaling;;
+            initialY = temp[0]*scaling + k;
+            initialX = temp[1]*scaling - h;
           // if (FractalRender.CheckCoordOutOfRadius(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) System.out.println("yes");
         } else {
-            initialY = y;
-            initialX = x;
+            initialY = y + k;
+            initialX = x - h;
         }
         
       // outputX = x+10;
