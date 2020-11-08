@@ -21,6 +21,4 @@ public class FallProject extends Application{
         stage.setScene(scene);
         stage.show();
     } 
-    
-    //Henlo my frends
 }
