@@ -1,12 +1,12 @@
 package FallProject.model;
 
 public class Fractal {
-    public static double radius = 3;
-    public static int iterationLimit = 100;
+    public static double radius = 2;
+    public static int iterationLimit = 400;
     public static int iterate = 0;
-    public static double scaling = 0.006;
+    public static double scaling = 0.0001;
     
-    public static double k = 0;
+    public static double k = 0.61;
     public static double h = 0.5;
     
     public static void Mandelbrot(double x, double y) {
@@ -39,18 +39,10 @@ public class Fractal {
        temp[0] = (int)Math.floor(outputX/Fractal.scaling);
        temp[1] = (int)Math.floor(outputY/Fractal.scaling);
        
-      //  System.out.println(temp[0]);
        
-      
+       if(!FractalRender.CheckCoordOutOfRadius(outputX, outputY))Fractal.iterate++;
        
-       if(!FractalRender.CheckCoordOutOfRadius(outputX, outputY)) {
-           
-
-       Fractal.iterate++;
-       } else {
-           
-       }
-        
+       
        temp[2] = Fractal.iterate;
     }
 }

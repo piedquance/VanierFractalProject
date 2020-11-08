@@ -6,9 +6,7 @@ import java.util.Set;
 public class FractalRender {
     
     public static boolean CheckCoordOutOfRadius(double x,double y) {
-        
-      //  System.out.println(x + " " + y);
-        
+                
         return Math.sqrt(x*x + y*y) > Fractal.radius ? true:false;
         
        }
@@ -22,8 +20,6 @@ public class FractalRender {
         
         for(int n = 0; n<Fractal.iterationLimit; n++) {
             
-          Fractal.iterate = n;
-            // System.out.println(temp[2]+ " " + Fractal.iterationLimit);
              
           Fractal.Mandelbrot(xd, yd);
           
@@ -57,6 +53,10 @@ public class FractalRender {
     
     
     public static void addColor() {
+        
+        int colors = 300;
+        byte[][] gradient = Gradient(colors);           
+        
          for(int y = 0; y < Plane.grid.length; y++) {
             for(int x = 0; x < Plane.grid[y].length; x++) {
                 
@@ -64,34 +64,66 @@ public class FractalRender {
                                 
                 int mappedX =  0 - (Plane.grid[0].length/2 - x);
                 int mappedY =  0 + (Plane.grid.length/2 - y);
-                
-                
-                //System.out.println(temp[0]);
-                
-               // temp[1] = 255;
-                
-              //  Plane.setCoord((int)(temp[0]*Fractal.scaling), (int)(temp[1]*Fractal.scaling), new int[]{255, 0, 0});
 
-                
                 if (CheckCoordOutOfRadius(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
-                    temp[0] = 0;
-                    temp[1] = 0;
-                    temp[2] = temp[2];
+                    
+                    int i = temp[2]%(colors);
+
+                    for(int n = 0; n < temp.length; n++) {
+                        temp[n] = gradient[i][n];
+                    }
+
+
+                if(((mappedX)*Fractal.scaling)  == 0) temp[0] = 255;
+                if(((mappedY)*Fractal.scaling)  == 0) temp[0] = 255;
+
                 } else {
-                    temp[0] = 0;
-                    temp[1] = 0;
-                    temp[2] = 0;
+                        temp[0] = 0;
+                        temp[1] = 0;
+                        temp[2] = 0;
                     
                 }
-                
-                if((mappedX*Fractal.scaling)%1 == 0) temp[0] = 255;
-                
-                if((mappedY*Fractal.scaling)%1 == 0) temp[0] = 255;
-                
-
-                
             }
         }
+    }
+    
+    public static byte[][] Gradient(int spacing) {
+        byte[][] gradient = new byte[spacing][3];
+        int level;
+        int marker = 0;
+        int step = (int) Math.ceil(spacing/6);
+        
+        for(int n = 0; n < 3; n++) {
+            for(int m = 0; m < spacing; m++) {
+                
+                if(m == 0) level = 1;
+                else level = (int) Math.ceil(m/6) + marker*2;
+                if(level > 6) level -= 6;
+                
+                switch(level) {
+                    case 1:case 2: 
+                        gradient[m][n] = 0;
+                        break;
+                        
+                    case 3:
+                        gradient[m][n] = (byte)((m%step) * 255 / step);
+                        break;
+                            
+                    case 4:case 5:
+                        gradient[m][n] = (byte) 255;
+                        break;
+                        
+                    case 6:
+                        gradient[m][n] = (byte)(255 - (m%step) * 255 / step);
+                        break;
+                      
+                }
+                
+
+            }
+            marker++;
+        }
+        return gradient;
     }
     
     
