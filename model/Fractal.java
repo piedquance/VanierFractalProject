@@ -3,13 +3,14 @@ package FallProject.model;
 public class Fractal {
     public static double radius = 3;
     public static int iterationLimit = 300;
+    public static int breakpoint = 50;
     public static int iterate = 0;
     public static double scaling = 0.009;
     //Scaling value will sometimes not work, idk why. If it happens just change it and hope for the best.
     
     public static double k = 0;
     public static double h = 0;
-    public static String name = "";
+    public static String name = "Failed Newton";
     
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
@@ -41,22 +42,13 @@ public class Fractal {
             default:
                 outputX = x;
                 outputY = y;
-                break;
-            
+                break; 
         }
 
-       
-
-
-
-        
-        
        temp[0] = (int)Math.floor(outputX/Fractal.scaling);
        temp[1] = (int)Math.floor(outputY/Fractal.scaling);
-       
-       
+
        if(!FractalRender.CheckCoordOutOfRadius(outputX, outputY))Fractal.iterate++;
-       
        
        temp[2] = Fractal.iterate;
     }

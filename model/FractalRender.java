@@ -23,6 +23,10 @@ public class FractalRender {
              
           Fractal.Formula(xd, yd, Fractal.name);
           
+          int temp[] = Plane.getCoord(x, y);
+          
+          if(CheckCoordOutOfRadius(temp[0], temp[1]) && n>Fractal.breakpoint) break;
+          
         }
         
         Fractal.iterate = 0;
