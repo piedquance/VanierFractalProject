@@ -4,12 +4,14 @@ public class Fractal {
     public static double radius = 3;
     public static int iterationLimit = 300;
     public static int iterate = 0;
-    public static double scaling = 0.004;
+    public static double scaling = 0.009;
+    //Scaling value will sometimes not work, idk why. If it happens just change it and hope for the best.
     
     public static double k = 0;
-    public static double h = 0.5;
+    public static double h = 0;
+    public static String name = "";
     
-    public static void Mandelbrot(double x, double y) {
+    public static void Formula(double x, double y, String type) {
         double outputX, outputY;
         
         double initialX =  x;  //Deja Vu
@@ -27,13 +29,26 @@ public class Fractal {
             initialX = x - h;
         }
         
-      // outputX = x+10;
-      // outputY = y;
+        switch(type) {
+            case "Mandelbrot":
+                outputY = initialX*initialX - initialY*initialY + x;
+                outputX = 2*initialX*initialY + y;
+                break;
+            case "Failed Newton":
+                outputX = initialX*initialX*initialX - 3*initialY*initialX - 1;
+                outputY = 3*initialY*initialX*initialX - initialX;
+                break;
+            default:
+                outputX = x;
+                outputY = y;
+                break;
+            
+        }
+
        
 
 
-        outputY = initialX*initialX - initialY*initialY + x;
-        outputX = 2*initialX*initialY + y;
+
         
         
        temp[0] = (int)Math.floor(outputX/Fractal.scaling);
@@ -45,4 +60,15 @@ public class Fractal {
        
        temp[2] = Fractal.iterate;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

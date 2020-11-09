@@ -21,7 +21,7 @@ public class FractalRender {
         for(int n = 0; n<Fractal.iterationLimit; n++) {
             
              
-          Fractal.Mandelbrot(xd, yd);
+          Fractal.Formula(xd, yd, Fractal.name);
           
         }
         
