@@ -1,26 +1,25 @@
 package FallProject.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class FractalRender {
     
-    public static boolean CheckCoordOutOfRadius(double x,double y) {
-                
-        return Math.sqrt(x*x + y*y) > Fractal.radius ? true:false;
-        
-       }
+    //GetRender renders the selected fractal.
+        public static byte[] GetRender() {
+        iterateAll();
+        addColor();
+        return Plane.toByte();
+    }
+    
+    //You know what this does
+    public static boolean CheckCoordOutOfRadius(double x,double y) { return Math.sqrt(x*x + y*y) > Fractal.radius ? true:false;}
 
+    //This method iterates a coordinate until it reaches the limit of iterations or the coordinate escapes the radius after the breakpoint
     public static void iterate(int x,int y) {
        
         double xd = x * Fractal.scaling;
         double yd = y * Fractal.scaling;
         
-       // System.out.println(xd + " " + yd);
-        
         for(int n = 0; n<Fractal.iterationLimit; n++) {
             
-             
           Fractal.Formula(xd, yd, Fractal.name);
           
           int temp[] = Plane.getCoord(x, y);
@@ -28,39 +27,31 @@ public class FractalRender {
           if(CheckCoordOutOfRadius(temp[0], temp[1]) && n>Fractal.breakpoint) break;
           
         }
-        
         Fractal.iterate = 0;
-        
     }
     
-    
+    //This method iterates over every single coordinate
     public static void iterateAll(){
-        
-        //System.out.println(Plane.grid[0].length);
         
         for(int y = 0; y < Plane.grid.length; y++) {
             for(int x = 0; x < Plane.grid[y].length; x++) {
                 
                 int mappedX =  0 - (Plane.grid[0].length/2 - x);
                 int mappedY =  0 + (Plane.grid.length/2 - y);
-                
-               // System.out.println(x);
-                
-                
-               // System.out.println(mappedX + " " + mappedY);
 
                 iterate(mappedX, mappedY);
             }
         }
-        
     }
     
-    
+    //This method assigns a rgb value to each pixel based on the iteration count.
     public static void addColor() {
         
         int colors = 24;
         //int[][] gradient = Gradient(colors);
         
+        
+//Here we have the color gradient.
         int[][] gradient = {
             {0, 255, 0},
             {0, 255, 64},
@@ -103,26 +94,26 @@ public class FractalRender {
 
                 if (CheckCoordOutOfRadius(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
                     
+                    //We assign a color based on the number of iterations.
                     int i = (temp[2] + 4)%(colors);
 
                     for(int n = 0; n < temp.length; n++) {
                         temp[n] = gradient[i][n];
                     }
 
-
                 if(((mappedX)*Fractal.scaling)  == 0) temp[0] = 255;
                 if(((mappedY)*Fractal.scaling)  == 0) temp[0] = 255;
-
+                //If it's in the set, the pixel is black
                 } else {
                         temp[0] = 0;
                         temp[1] = 0;
                         temp[2] = 0;
-                    
                 }
             }
         }
     }
     
+    //This method attempts to generate a gradient. It doesn't work very well.
     public static int[][] Gradient(int spacing) {
         int[][] gradient = new int[spacing][3];
         int level;
@@ -152,21 +143,11 @@ public class FractalRender {
                     case 6:
                         gradient[m][n] = (255 - (m%step) * 255 / step);
                         break;
-                      
                 }
-                
-
             }
             marker++;
         }
         return gradient;
-    }
-    
-    
-    public static byte[] GetRender() {
-        iterateAll();
-        addColor();
-        return Plane.toByte();
     }
 
 }

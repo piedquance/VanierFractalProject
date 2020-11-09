@@ -5,12 +5,12 @@ public class Fractal {
     public static int iterationLimit = 300;
     public static int breakpoint = 50;
     public static int iterate = 0;
-    public static double scaling = 0.009;
+    public static double scaling = 0.004;
     //Scaling value will sometimes not work, idk why. If it happens just change it and hope for the best.
     
     public static double k = 0;
-    public static double h = 0;
-    public static String name = "Failed Newton";
+    public static double h = 0.5;
+    public static String name = "Mandelbrot";
     
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
@@ -24,11 +24,12 @@ public class Fractal {
         if(Fractal.iterate != 0) {
             initialY = temp[0]*scaling + k;
             initialX = temp[1]*scaling - h;
-          // if (FractalRender.CheckCoordOutOfRadius(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) System.out.println("yes");
         } else {
             initialY = y + k;
             initialX = x - h;
         }
+        
+        //You can add your extended formula here
         
         switch(type) {
             case "Mandelbrot":

@@ -4,14 +4,12 @@ import FallProject.view.controller;
 
 public class Plane {
 
+    //A Plane is created
     public static int grid[][][] = new int[(int)controller.screenHeight][(int)controller.screenWidth][3];
 
 
-    public Plane() {
-       for(int n: grid[0][0]) System.out.println(n);
-            
-    }
     
+    //Maps a coord to the array and sets the 3 values inside of it, either rgb or 2 values for a coord and 1 for the iteration count
     public static void setCoord(int x, int y, int[] value) {
         int mappedX = x + grid[0].length/2;
         int mappedY = grid.length/2 - y;
@@ -27,7 +25,7 @@ public class Plane {
         return grid[mappedY][mappedX];
     }
     
-    
+    //Puts the entire Plane inside a 1D byte array
     public static byte[] toByte() {
         byte[] stream = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 3];
         int marker = 0;
@@ -40,11 +38,4 @@ public class Plane {
     
     
     
-    public int[][][] getGrid() {
-        return this.grid;
-    }
-
-    public void setGrid(int[][][] grid) {
-        this.grid = grid;
-    }
 }
