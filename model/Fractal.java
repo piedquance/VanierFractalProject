@@ -1,7 +1,7 @@
 package FallProject.model;
 
 public class Fractal {
-    public static double radius = 2;
+    public static double radius = 3;
     public static int iterationLimit = 300;
     public static int iterate = 0;
     public static double scaling = 0.004;

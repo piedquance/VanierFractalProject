@@ -54,8 +54,35 @@ public class FractalRender {
     
     public static void addColor() {
         
-        int colors = 72;
-        int[][] gradient = Gradient(colors);    
+        int colors = 24;
+        //int[][] gradient = Gradient(colors);
+        
+        int[][] gradient = {
+            {0, 255, 0},
+            {0, 255, 64},
+            {0, 255, 128},
+            {0, 255, 192},
+            {0, 255, 255},
+            {0, 192, 255},
+            {0, 128, 255},
+            {0, 64, 255},
+            {0, 0, 255},
+            {64, 0, 255},
+            {128, 0, 255},
+            {192, 0, 255},
+            {255, 0, 255},
+            {255, 0, 192},
+            {255, 0, 128},
+            {255, 0, 64},
+            {255, 0, 0},
+            {255, 64, 0},
+            {255, 128, 0},
+            {255, 192, 0},
+            {255, 255, 0},
+            {192, 255, 0},
+            {128, 255, 0},
+            {64, 255, 0}
+        };
         
 //        for(int[] m: gradient){
 //            for(int n: m) System.out.print(n + " ");
@@ -72,7 +99,7 @@ public class FractalRender {
 
                 if (CheckCoordOutOfRadius(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
                     
-                    int i = temp[2]%(colors);
+                    int i = (temp[2] + 4)%(colors);
 
                     for(int n = 0; n < temp.length; n++) {
                         temp[n] = gradient[i][n];
