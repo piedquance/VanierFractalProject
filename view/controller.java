@@ -22,7 +22,7 @@ public class controller implements Initializable {
 
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
     
-    public static double screenHeight = screen.getHeight();
+    public static double screenHeight = screen.getHeight()-100;
     public static double screenWidth = screen.getWidth();
     
     //public static double screenHeight = 600;

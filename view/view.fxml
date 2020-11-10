@@ -1,11 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FallProject.view.controller">
    <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Info">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Help" />
+                  <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Mandelbrot" />
+                  <MenuItem mnemonicParsing="false" text="Julia" />
+                  <MenuItem mnemonicParsing="false" text="Newton" />
+                  <MenuItem mnemonicParsing="false" text="Kock Snowflake" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Iteration Count" />
+                  <MenuItem mnemonicParsing="false" text="Radius" />
+                  <MenuItem mnemonicParsing="false" text="Position" />
+                  <MenuItem mnemonicParsing="false" text="Axis" />
+                  <MenuItem mnemonicParsing="false" text="Color Gradient" />
+                  <MenuItem mnemonicParsing="false" text="Font Size" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
       <HBox fx:id="hbox" alignment="CENTER" prefHeight="398.0" prefWidth="600.0">
          <children>
             <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
