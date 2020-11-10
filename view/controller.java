@@ -22,6 +22,7 @@ public class controller implements Initializable {
 
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
     
+    //added a -100 to be able to view the menu bar.
     public static double screenHeight = screen.getHeight()-100;
     public static double screenWidth = screen.getWidth();
     
