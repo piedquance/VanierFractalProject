@@ -1,14 +1,17 @@
 package FallProject.view;
 
 import FallProject.model.*;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
@@ -64,20 +67,22 @@ public class controller implements Initializable {
     } 
     
     @FXML
-    private void menuButtons(ActionEvent event){
+    private void menuButtons(ActionEvent event) throws Exception{
+        Parent root = new Pane();
         
         String title = " ";
         if(event.getSource().equals(Help)){
-                title = "Help";
+            root = FXMLLoader.load(getClass().getResource("view/help.fxml"));
+            title = "Help";
         }
         else if(event.getSource().equals(About)){
                 title = "About";
         }
         
         Stage secondaryStage = new Stage();
-        Pane pane = new Pane();
-        Scene scene = new Scene(pane);
-        //change name to FX ID of pressed menu item
+        Scene scene = new Scene(root);
+        
+        
         secondaryStage.setTitle(title);
         secondaryStage.setScene(scene);
         secondaryStage.show();
