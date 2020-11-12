@@ -6,24 +6,23 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FallProject.view.controller">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Info">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Help" fx:id="Help" onAction="#menuButtons"/>
-                  <MenuItem mnemonicParsing="false" text="About" fx:id="About" onAction="#menuButtons"/>
+                  <MenuItem fx:id="Help" mnemonicParsing="false" onAction="#menuButtons" text="Help" />
+                  <MenuItem fx:id="About" mnemonicParsing="false" onAction="#menuButtons" text="About" />
               <MenuItem mnemonicParsing="false" text="close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-                  <MenuItem mnemonicParsing="false" text="Mandelbrot" />
-                  <MenuItem mnemonicParsing="false" text="Julia" />
-                  <MenuItem mnemonicParsing="false" text="Newton" />
-                  <MenuItem mnemonicParsing="false" text="Kock Snowflake" />
+                  <MenuItem mnemonicParsing="false" onAction="#FractalHandlerMandelbrot" text="Mandelbrot" />
+                  <MenuItem mnemonicParsing="false" onAction="#FractalHandlerJulia" text="Julia" />
+                  <MenuItem mnemonicParsing="false" onAction="#FractalHandlerNewton" text="Newton" />
+                  <MenuItem mnemonicParsing="false" onAction="#FractalHandlerkock" text="Kock Snowflake" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Variables">
