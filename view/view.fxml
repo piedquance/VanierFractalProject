@@ -17,12 +17,12 @@
               <MenuItem mnemonicParsing="false" text="close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Fractal">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#FractalHandlerMandelbrot" text="Mandelbrot" />
                   <MenuItem mnemonicParsing="false" onAction="#FractalHandlerJulia" text="Julia" />
                   <MenuItem mnemonicParsing="false" onAction="#FractalHandlerNewton" text="Newton" />
-                  <MenuItem mnemonicParsing="false" onAction="#FractalHandlerkock" text="Kock Snowflake" />
+                  <MenuItem mnemonicParsing="false" onAction="#FractalHandlerkKoch" text="Koch Snowflake" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Variables">

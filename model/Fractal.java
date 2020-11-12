@@ -2,7 +2,7 @@ package FallProject.model;
 
 public class Fractal {
 
-    public static double radius = 5;
+    public static double radius = 3;
     public static int iterationLimit = 300;
     public static int breakpoint = 50;
     public static int iterate = 0;

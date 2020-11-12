@@ -131,9 +131,9 @@ public class controller implements Initializable {
     }
     
     @FXML
-      private void FractalHandlerkock(ActionEvent even) {
+      private void FractalHandlerkKoch(ActionEvent even) {
 
-        Fractal.name = "Newton";
+        Fractal.name = "Koch";
 
         printFractal();
 
