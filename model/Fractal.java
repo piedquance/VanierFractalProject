@@ -10,8 +10,8 @@ public class Fractal {
     //Scaling value will sometimes not work, idk why. If it happens just change add a 1 and hope for the best
     
     public static double k = 0;
-    public static double h = 0;
-    public static String name = "A";
+    public static double h = 0.5;
+    public static String name = "";
     
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
