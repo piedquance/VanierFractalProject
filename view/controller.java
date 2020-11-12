@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -104,7 +105,7 @@ public class controller implements Initializable {
     }
 
     @FXML
-    private void FractalHandlerJulia(ActionEvent even) {
+    private void FractalHandlerJulia(ActionEvent event) {
 
         Fractal.name = "Julia";
 
@@ -113,7 +114,7 @@ public class controller implements Initializable {
     }
 
     @FXML
-    private void FractalHandlerMandelbrot(ActionEvent even) {
+    private void FractalHandlerMandelbrot(ActionEvent event) {
 
         Fractal.name = "Mandelbrot";
 
@@ -122,20 +123,27 @@ public class controller implements Initializable {
     }
 
     @FXML
-    private void FractalHandlerNewton(ActionEvent even) {
+    private void FractalHandlerNewton(ActionEvent event) {
 
         Fractal.name = "Newton";
 
         printFractal();
 
     }
-    
+
     @FXML
-      private void FractalHandlerkKoch(ActionEvent even) {
+    private void FractalHandlerkKoch(ActionEvent event) {
 
         Fractal.name = "Koch";
 
         printFractal();
+
+    }
+
+    @FXML
+    private void ExitApplication(ActionEvent event) {
+
+        Platform.exit();
 
     }
 

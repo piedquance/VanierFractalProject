@@ -14,7 +14,7 @@
             <items>
                   <MenuItem fx:id="Help" mnemonicParsing="false" onAction="#menuButtons" text="Help" />
                   <MenuItem fx:id="About" mnemonicParsing="false" onAction="#menuButtons" text="About" />
-              <MenuItem mnemonicParsing="false" text="close" />
+              <MenuItem mnemonicParsing="false" onAction="#ExitApplication" text="close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Fractal">
