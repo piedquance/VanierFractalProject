@@ -73,15 +73,15 @@ public class controller implements Initializable {
 
         String title = " ";
         if (event.getSource().equals(Help)) {
-            root = FXMLLoader.load(getClass().getResource("view/help.fxml"));
+            root = FXMLLoader.load(getClass().getResource("help.fxml"));
             title = "Help";
+            
         } else if (event.getSource().equals(About)) {
             title = "About";
         }
-
-        Stage secondaryStage = new Stage();
+        
         Scene scene = new Scene(root);
-
+        Stage secondaryStage = new Stage();
         secondaryStage.setTitle(title);
         secondaryStage.setScene(scene);
         secondaryStage.show();
