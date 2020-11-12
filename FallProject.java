@@ -20,6 +20,9 @@ public class FallProject extends Application{
         
         stage.setTitle("Fractals");
         stage.setScene(scene);
+        
+       // System.out.println(root.getChildrenUnmodifiable().get(1).set);
+        
         stage.show();
     } 
 }
