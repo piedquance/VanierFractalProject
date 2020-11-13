@@ -27,12 +27,12 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Variables">
             <items>
-                  <MenuItem fx:id="IterationCount" mnemonicParsing="false" text="Iteration Count" />
-                  <MenuItem fx:id="Radius" mnemonicParsing="false" text="Radius" />
-                  <MenuItem fx:id="Position" mnemonicParsing="false" text="Position" />
-                  <MenuItem fx:id="Axis" mnemonicParsing="false" text="Axis" />
-                  <MenuItem fx:id="ColorGradient" mnemonicParsing="false" text="Color Gradient" />
-                  <MenuItem fx:id="FontSize" mnemonicParsing="false" text="Font Size" />
+                  <MenuItem fx:id="IterationCount" mnemonicParsing="false" text="Iteration Count" onAction="#menuButtons"/>
+                  <MenuItem fx:id="Radius" mnemonicParsing="false" text="Radius" onAction="#menuButtons"/>
+                  <MenuItem fx:id="Position" mnemonicParsing="false" text="Position" onAction="#menuButtons"/>
+                  <MenuItem fx:id="Axis" mnemonicParsing="false" text="Axis" onAction="#menuButtons"/>
+                  <MenuItem fx:id="ColorGradient" mnemonicParsing="false" text="Color Gradient" onAction="#menuButtons"/>
+                  <MenuItem fx:id="FontSize" mnemonicParsing="false" text="Font Size" onAction="#menuButtons"/>
             </items>
           </Menu>
         </menus>

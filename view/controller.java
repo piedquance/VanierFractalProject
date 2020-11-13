@@ -85,9 +85,9 @@ public class controller implements Initializable {
     @FXML
     private void menuButtons(ActionEvent event) throws Exception {
         Parent root = new Pane();
-
-
         String title = " ";
+
+
         if (event.getSource().equals(Help)) {
             root = FXMLLoader.load(getClass().getResource("help.fxml"));
 //            scene.getStylesheets().add(getClass().getResource("help.css").toExternalForm());
