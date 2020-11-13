@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="396.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="396.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FallProject.view.controller">
    <children>
       <GridPane>
         <columnConstraints>
@@ -27,7 +27,7 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" />
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" onAction="#closeWindow"/>
    </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="10.0" top="25.0" />

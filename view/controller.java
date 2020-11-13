@@ -46,7 +46,7 @@ public class controller implements Initializable {
     @FXML
     private MenuItem FontSize;
 
-    
+    public static Stage secondaryStage = new Stage();
     
     
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
@@ -63,6 +63,7 @@ public class controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        if(this.image != null) {
         image.setFitHeight(screenHeight);
         image.setFitWidth(screenWidth);
 
@@ -80,6 +81,7 @@ public class controller implements Initializable {
 
         image.setImage(img);
 
+        }
     }
 
     @FXML
@@ -130,13 +132,11 @@ public class controller implements Initializable {
         }
         
         Scene scene = new Scene(root);
-        Stage secondaryStage = new Stage();
+        
         secondaryStage.setTitle(title);
         secondaryStage.setScene(scene);
         secondaryStage.show();
     }
-    
-    
 
     private void printFractal() {
         WritableImage img = new WritableImage((int) image.getFitWidth(), (int) image.getFitHeight());
@@ -192,9 +192,13 @@ public class controller implements Initializable {
 
     @FXML
     private void ExitApplication(ActionEvent event) {
-
         Platform.exit();
-
     }
-
+    
+        
+    @FXML
+    private void closeWindow(ActionEvent event) {
+    secondaryStage.close();
+    }
+    
 }
