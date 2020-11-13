@@ -27,7 +27,7 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Cancel" />
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" />
    </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="10.0" top="25.0" />
