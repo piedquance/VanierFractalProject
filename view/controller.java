@@ -15,6 +15,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.PixelWriter;
@@ -45,7 +46,16 @@ public class controller implements Initializable {
     private MenuItem ColorGradient;
     @FXML
     private MenuItem FontSize;
-
+    @FXML
+    private TextField newItCount;
+    @FXML
+    private TextField newRadius;
+    @FXML
+    private TextField newH;
+    @FXML
+    private TextField newK;
+    
+    
     public static Stage secondaryStage = new Stage();
     
     
@@ -199,6 +209,36 @@ public class controller implements Initializable {
     @FXML
     private void closeWindow(ActionEvent event) {
     secondaryStage.close();
+    }
+    
+    @FXML
+    private void submitIterationCount(ActionEvent event){
+        int iterationCount;
+        iterationCount = Integer.parseInt(newItCount.getText());
+        Fractal.setIterationLimit(iterationCount);
+        
+        secondaryStage.close();
+    }
+    
+    @FXML
+    private void submitRadius(ActionEvent event){
+        double radius;
+        radius = Integer.parseInt(newRadius.getText());
+        Fractal.setRadius(radius);
+        
+        secondaryStage.close();
+    }
+    
+    @FXML
+    private void submitPosition(ActionEvent event){
+        double H;
+        H = Integer.parseInt(newH.getText());
+        Fractal.setH(H);
+        double K;
+        K = Integer.parseInt(newK.getText());
+        Fractal.setK(K);
+        
+        secondaryStage.close();
     }
     
 }

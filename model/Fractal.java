@@ -19,7 +19,7 @@ public class Fractal {
 
         double initialX = x;  //Deja Vu
         double initialY = y;   //I've just been in this place before
-
+                               //Lmao
         int[] temp = Plane.getCoord((int) Math.floor(x / Fractal.scaling), (int) Math.floor(y / Fractal.scaling));
 
         if (Fractal.iterate != 0) {
@@ -81,4 +81,36 @@ public class Fractal {
         temp[2] = Fractal.iterate;
     }
 
+    
+    
+    public static double getRadius() {
+        return radius;
+    }
+    public static void setRadius(double radius) {
+        Fractal.radius = radius;
+    }
+
+    
+    public static int getIterationLimit() {
+        return iterationLimit;
+    }
+    public static void setIterationLimit(int iterationLimit) {
+        Fractal.iterationLimit = iterationLimit;
+    }
+
+    
+    public static double getK() {
+        return k;
+    }
+    public static void setK(double k) {
+        Fractal.k = k;
+    }
+
+    
+    public static double getH() {
+        return h;
+    }
+    public static void setH(double h) {
+        Fractal.h = h;
+    }
 }
