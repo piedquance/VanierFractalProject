@@ -15,7 +15,7 @@
             <TextField prefHeight="25.0" prefWidth="335.0" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" onAction="#closeWindow"/>
+      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" onAction="#sumbitFontSize"/>
    </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="10.0" top="25.0" />

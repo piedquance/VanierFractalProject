@@ -1,13 +1,11 @@
 package FallProject.view;
 
 import FallProject.model.*;
-import java.io.IOException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
@@ -28,6 +26,7 @@ import javafx.stage.Stage;
 
 public class controller implements Initializable {
 
+    
     @FXML
     private ImageView image;
     @FXML
@@ -58,8 +57,7 @@ public class controller implements Initializable {
     
     public static Stage secondaryStage = new Stage();
     
-   
-    
+   public static int fontSize = 12;
     
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
 
@@ -102,16 +100,20 @@ public class controller implements Initializable {
     private void menuButtons(ActionEvent event) throws Exception {
         Parent root = new Pane();
         String title = " ";
+        Scene scene = new Scene(root);
+        
 
 
         if (event.getSource().equals(Help)) {
             root = FXMLLoader.load(getClass().getResource("help.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("help.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("help.css").toExternalForm());
+           // scene.getRoot().getChildrenUnmodifiable().get(0).setStyle("fx-font-size:" + fontSize +";");
             title = "Help";
             
         } else if (event.getSource().equals(About)) {
             root = FXMLLoader.load(getClass().getResource("about.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("about.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("about.css").toExternalForm());
+           // scene.getRoot().getChildrenUnmodifiable().get(0).setStyle("fx-font-size:" + fontSize +";");
             title = "About";
         }
         else if (event.getSource().equals(Axis)) {
@@ -144,12 +146,25 @@ public class controller implements Initializable {
 //            scene.getStylesheets().add(getClass().getResource("fontsize.css").toExternalForm());
             title = "Font Size";
         }
+       
         
-        Scene scene = new Scene(root);
+        
+        
+        
+        scene = new Scene(root);
+
+        
+        
         
         secondaryStage.setTitle(title);
         secondaryStage.setScene(scene);
+        
+        if(event.getSource().equals(About) || event.getSource().equals(Help)) secondaryStage.getScene().getRoot().getChildrenUnmodifiable().get(0).setStyle("-fx-font-size:" + fontSize +";");
+        
         secondaryStage.show();
+        
+               
+        
     }
 
     private void printFractal() {
@@ -228,6 +243,15 @@ public class controller implements Initializable {
         
         secondaryStage.close();
         printFractal();
+    }
+    
+    @FXML
+    private void sumbitFontSize(ActionEvent event) {
+  
+        //this changes the text font size to given size.
+        fontSize = 40;
+        
+        secondaryStage.close();
     }
     
     @FXML

@@ -2,6 +2,10 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
+/*#textBox {
 -fx-fontSize:12;
 }
+
+#text {
+    fx-font-size: -fx-fontSize;
+}*/
