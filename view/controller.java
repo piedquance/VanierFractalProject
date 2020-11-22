@@ -58,6 +58,8 @@ public class controller implements Initializable {
     
     public static Stage secondaryStage = new Stage();
     
+   
+    
     
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
 
@@ -67,6 +69,14 @@ public class controller implements Initializable {
 
     //public static double screenHeight = 600;
     //public static double screenWidth = 600;
+    
+     public WritableImage img = new WritableImage((int) screenWidth, (int) screenHeight);
+
+    public PixelWriter writer = img.getPixelWriter();
+    
+    public PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -77,13 +87,7 @@ public class controller implements Initializable {
         image.setFitHeight(screenHeight);
         image.setFitWidth(screenWidth);
 
-        WritableImage img = new WritableImage((int) image.getFitWidth(), (int) image.getFitHeight());
-
-        PixelWriter writer = img.getPixelWriter();
-
         image.setImage(img);
-
-        PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
 
         byte imageData[] = FractalRender.GetRender();
 
@@ -149,13 +153,8 @@ public class controller implements Initializable {
     }
 
     private void printFractal() {
-        WritableImage img = new WritableImage((int) image.getFitWidth(), (int) image.getFitHeight());
-
-        PixelWriter writer = img.getPixelWriter();
 
         image.setImage(img);
-
-        PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
 
         byte imageData[] = FractalRender.GetRender();
 
@@ -218,6 +217,7 @@ public class controller implements Initializable {
         Fractal.setIterationLimit(iterationCount);
         
         secondaryStage.close();
+        printFractal();
     }
     
     @FXML
@@ -227,10 +227,13 @@ public class controller implements Initializable {
         Fractal.setRadius(radius);
         
         secondaryStage.close();
+        printFractal();
     }
     
     @FXML
     private void submitPosition(ActionEvent event){
+        secondaryStage.close();
+        
         double H;
         H = Integer.parseInt(newH.getText());
         Fractal.setH(H);
@@ -238,7 +241,19 @@ public class controller implements Initializable {
         K = Integer.parseInt(newK.getText());
         Fractal.setK(K);
         
-        secondaryStage.close();
+        //printFractal();
+        
+        Fractal.name = "Mandelbrot";
+
+        printFractal();
+
+//        image.setImage(img);
+//
+//       byte imageData[] = FractalRender.GetRender();
+//
+//        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 3);
+//
+//        image.setImage(img);
     }
     
 }

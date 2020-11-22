@@ -24,7 +24,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Set H Value:" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Set K Value:" GridPane.rowIndex="1" />
             <TextField fx:id="newH" GridPane.columnIndex="1" />
-            <TextField fx:id="newk" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="newK" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" onAction="#submitPosition"/>

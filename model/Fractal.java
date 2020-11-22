@@ -23,10 +23,10 @@ public class Fractal {
         int[] temp = Plane.getCoord((int) Math.floor(x / Fractal.scaling), (int) Math.floor(y / Fractal.scaling));
 
         if (Fractal.iterate != 0) {
-            initialY = temp[0] * scaling + k;
+            initialY = temp[0] * scaling - k;
             initialX = temp[1] * scaling - h;
         } else {
-            initialY = y + k;
+            initialY = y - k;
             initialX = x - h;
         }
 
@@ -71,8 +71,8 @@ public class Fractal {
         }
         //Don't forget break; statement!
 
-        temp[0] = (int) Math.floor(outputX / Fractal.scaling);
-        temp[1] = (int) Math.floor(outputY / Fractal.scaling);
+        temp[0] = (int) (Math.floor(outputX/ Fractal.scaling));
+        temp[1] = (int) (Math.floor(outputY/ Fractal.scaling));
 
         if (!FractalRender.CheckCoordOutOfRadius(outputX, outputY)) {
             Fractal.iterate++;
@@ -100,7 +100,7 @@ public class Fractal {
 
     
     public static double getK() {
-        return k;
+        return Fractal.k;
     }
     public static void setK(double k) {
         Fractal.k = k;
@@ -108,7 +108,7 @@ public class Fractal {
 
     
     public static double getH() {
-        return h;
+        return Fractal.h;
     }
     public static void setH(double h) {
         Fractal.h = h;
