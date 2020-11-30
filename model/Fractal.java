@@ -58,8 +58,8 @@ public class Fractal {
                 outputY = y / Math.cos(initialY);
                 break;
             case "Julia":
-                outputX = 0; //just to handle it 
-                outputY = 0;
+                outputX = initialX * initialX - initialY * initialY + 0.285*initialX; //just to handle it 
+                outputY = 2* initialX * initialY + 0.285*initialY;
 
                 break;
 //// 
