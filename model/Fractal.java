@@ -2,24 +2,27 @@ package FallProject.model;
 
 public class Fractal {
 
-    public static double radius = 3;
-    public static int iterationLimit = 300;
-    public static int breakpoint = 50;
+    public static double radius = 5;
+    public static int iterationLimit = 50;
+    public static int breakpoint = 5;
     public static int iterate = 0;
     public static double scaling = 0.004;
     //0.004 gives no scale lines
     //Scaling value will sometimes not work, idk why. If it happens just add a 1 and hope for the best
 
     public static double k = 0;
-    public static double h = 0.5;
-    public static String name = "";
+    public static double h = 0;
+    public static String name = "Newton";
+
+
+
 
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
 
         double initialX = x;  //Deja Vu
         double initialY = y;   //I've just been in this place before
-                               //Lmao
+        //Lmao
         int[] temp = Plane.getCoord((int) Math.floor(x / Fractal.scaling), (int) Math.floor(y / Fractal.scaling));
 
         if (Fractal.iterate != 0) {
@@ -37,9 +40,9 @@ public class Fractal {
                 outputY = initialX * initialX - initialY * initialY + x;
                 outputX = 2 * initialX * initialY + y;
                 break;
-            case "Failed Newton":
-                outputX = initialX * initialX * initialX - 3 * initialY * initialX - 1;
-                outputY = 3 * initialY * initialX * initialX - initialX;
+            case "Newton":
+                outputY = initialX - ((initialX*initialX*initialX - 3 * initialX * initialY*initialY - 1) / (3 * initialX*initialX - initialY*initialY*3));
+                outputX = initialY - ((3 * initialY * initialX*initialX - initialY*initialY*initialY) / (6 * initialX * initialY));
                 break;
             case "Cos Blocks":
                 outputX = x / Math.cos(x + initialX);
@@ -58,8 +61,11 @@ public class Fractal {
                 outputY = y / Math.cos(initialY);
                 break;
             case "Julia":
-                outputX = initialX * initialX - initialY * initialY + 0.285*initialX; //just to handle it 
-                outputY = 2* initialX * initialY + 0.285*initialY;
+                double zx = initialX;
+                double zy = initialY;
+
+                outputX = 2 * zx * zy; //X is for imaginary numbers (yeah i know its inverted idk why)
+                outputY = zx * zx - zy * zy + (1 - 1.6180339887); //Y is for real numbers 
 
                 break;
 //// 
@@ -71,46 +77,48 @@ public class Fractal {
         }
         //Don't forget break; statement!
 
-        temp[0] = (int) (Math.floor(outputX/ Fractal.scaling));
-        temp[1] = (int) (Math.floor(outputY/ Fractal.scaling));
+        temp[0] = (int) (Math.floor(outputX / Fractal.scaling));
+        temp[1] = (int) (Math.floor(outputY / Fractal.scaling));
 
-        if (!FractalRender.CheckCoordOutOfRadius(outputX, outputY)) {
+        if (!FractalRender.CheckCloseTo1(outputX, outputY)) {
             Fractal.iterate++;
         }
 
         temp[2] = Fractal.iterate;
     }
 
-    
-    
     public static double getRadius() {
         return radius;
     }
+
     public static void setRadius(double radius) {
         Fractal.radius = radius;
     }
 
-    
     public static int getIterationLimit() {
         return iterationLimit;
     }
+
     public static void setIterationLimit(int iterationLimit) {
         Fractal.iterationLimit = iterationLimit;
     }
 
-    
     public static double getK() {
         return Fractal.k;
     }
+
     public static void setK(double k) {
         Fractal.k = k;
     }
 
-    
     public static double getH() {
         return Fractal.h;
     }
+
     public static void setH(double h) {
         Fractal.h = h;
     }
+
 }
+
+

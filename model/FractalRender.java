@@ -11,6 +11,7 @@ public class FractalRender {
     
     //You know what this does
     public static boolean CheckCoordOutOfRadius(double x,double y) { return Math.sqrt(x*x + y*y) > Fractal.radius ? true:false;}
+    public static boolean CheckCloseTo1(double x, double y) { return Math.sqrt(Math.pow((x*x*x -3*y*y*x - 1),2) + Math.pow((3*x*x*y-x*x*x), 2))  > Fractal.radius ? true:false;};
 
     //This method iterates a coordinate until it reaches the limit of iterations or the coordinate escapes the radius after the breakpoint
     public static void iterate(int x,int y) {
@@ -24,7 +25,7 @@ public class FractalRender {
           
           int temp[] = Plane.getCoord(x, y);
           
-          if(CheckCoordOutOfRadius(temp[0], temp[1]) && n>Fractal.breakpoint) break;
+          if(CheckCloseTo1(temp[0], temp[1]) && n>Fractal.breakpoint) break;
           
         }
         Fractal.iterate = 0;
@@ -92,7 +93,7 @@ public class FractalRender {
                 int mappedX =  0 - (Plane.grid[0].length/2 - x);
                 int mappedY =  0 + (Plane.grid.length/2 - y);
 
-                if (CheckCoordOutOfRadius(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
+                //if (CheckCloseTo1(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
                     
                     //We assign a color based on the number of iterations.
                     int i = (temp[2] + 4)%(colors);
@@ -104,11 +105,11 @@ public class FractalRender {
                 if(((mappedX)*Fractal.scaling)  == 0) temp[0] = 255;
                 if(((mappedY)*Fractal.scaling)  == 0) temp[0] = 255;
                 //If it's in the set, the pixel is black
-                } else {
-                        temp[0] = 0;
-                        temp[1] = 0;
-                        temp[2] = 0;
-                }
+                //} else {
+//                        temp[0] = 0;
+//                        temp[1] = 0;
+//                        temp[2] = 0;
+//                }
             }
         }
     }
