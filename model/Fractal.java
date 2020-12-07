@@ -4,7 +4,7 @@ public class Fractal {
 
     public static double radius = 100000;
     public static int iterationLimit = 200;
-    public static int breakpoint = 100;
+    public static int breakpoint = 20;
     public static int iterate = 0;
     public static double scaling = 0.004;
     //0.004 gives no scale lines
@@ -83,11 +83,36 @@ public class Fractal {
         temp[0] = (int) (Math.floor(outputX / Fractal.scaling));
         temp[1] = (int) (Math.floor(outputY / Fractal.scaling));
 
-        if (!FractalRender.CheckCloseTo1(outputX, outputY)) {
+        if (!CheckCoord(outputX, outputY)) {
             Fractal.iterate++;
         }
 
         temp[2] = Fractal.iterate;
+    }
+        
+    
+    public static boolean CheckCoord(double x, double y) {
+        switch(name) {
+            case "Newton" : return Math.sqrt(Math.pow((x*x*x -3*y*y*x - 1),2) + Math.pow((3*x*x*y-x*x*x), 2))  > Fractal.radius ? true:false;
+
+            case "Julia": 
+                
+            case "Mandelbrot": return Math.sqrt(x*x + y*y) > Fractal.radius ? true:false;
+            
+            default: return false;
+        }
+    }
+    
+    public static boolean Color() {
+        switch(name) {
+            case "Netwon" : return false;
+            
+            case "Julia":
+                
+            case "Mandelbrot": return true;
+            
+            default: return false;
+        }
     }
 
     public static double getRadius() {
