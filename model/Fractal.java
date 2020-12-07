@@ -2,9 +2,9 @@ package FallProject.model;
 
 public class Fractal {
 
-    public static double radius = 3;
-    public static int iterationLimit = 50;
-    public static int breakpoint = 5;
+    public static double radius = 100000;
+    public static int iterationLimit = 200;
+    public static int breakpoint = 100;
     public static int iterate = 0;
     public static double scaling = 0.004;
     //0.004 gives no scale lines
@@ -44,7 +44,7 @@ public class Fractal {
                 double z1 = initialX;
                 double z2 = initialY;
                 
-                outputY = initialX - (((Math.pow(-z1,2) + Math.pow(z1, 5) + Math.pow(z2,2) + x*Math.pow(z2,4)+ 2*z1*z1*z1*z2*z2) / (3*Math.pow(z1,4) + 3*Math.pow(z2,4)+ 6*z1*z1*z2*z2)));
+                outputY = initialX - (((-Math.pow(z1,2) + Math.pow(z1, 5) + Math.pow(z2,2) + z1*Math.pow(z2,4)+ 2*z1*z1*z1*z2*z2) / (3*Math.pow(z1,4) + 3*Math.pow(z2,4)+ 6*z1*z1*z2*z2)));
                 outputX = initialY - ((Math.pow(z2, 5) + z2*Math.pow(z1,4) + 2*z1*z1*z2*z2*z2 + 2*z1*z2) / (3*Math.pow(z1,4) + 3*Math.pow(z2,4)+ 6*z1*z1*z2*z2));
                 break;
             case "Cos Blocks":
