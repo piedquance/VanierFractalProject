@@ -182,7 +182,7 @@ public class controller implements Initializable {
     private void FractalHandlerJulia(ActionEvent event) {
 
         Fractal.name = "Julia";
-
+        Fractal.radius = 2;
         printFractal();
 
     }
@@ -191,7 +191,7 @@ public class controller implements Initializable {
     private void FractalHandlerMandelbrot(ActionEvent event) {
 
         Fractal.name = "Mandelbrot";
-
+        Fractal.radius = 2;
         printFractal();
 
     }
@@ -200,7 +200,7 @@ public class controller implements Initializable {
     private void FractalHandlerNewton(ActionEvent event) {
 
         Fractal.name = "Newton";
-
+        Fractal.radius = 1999999999;
         printFractal();
 
     }
@@ -209,7 +209,7 @@ public class controller implements Initializable {
     private void FractalHandlerkKoch(ActionEvent event) {
 
         Fractal.name = "Koch";
-
+        Fractal.radius = 2;
         printFractal();
 
     }

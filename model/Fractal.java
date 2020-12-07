@@ -2,7 +2,9 @@ package FallProject.model;
 
 public class Fractal {
 
-    public static double radius = 100000;
+        public static String name = "Newton";
+
+    public static double radius = "Newton".equals(name) ? 1999999999 : 2;
     public static int iterationLimit = 200;
     public static int breakpoint = 20;
     public static int iterate = 0;
@@ -12,7 +14,7 @@ public class Fractal {
 
     public static double k = 0;
     public static double h = 0;
-    public static String name = "Newton";
+
 
 
 
@@ -105,7 +107,7 @@ public class Fractal {
     
     public static boolean Color() {
         switch(name) {
-            case "Netwon" : return false;
+            case "Netwon" : return true;
             
             case "Julia":
                 
@@ -114,6 +116,8 @@ public class Fractal {
             default: return false;
         }
     }
+    
+
 
     public static double getRadius() {
         return radius;

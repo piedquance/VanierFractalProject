@@ -91,7 +91,7 @@ public class FractalRender {
                 int mappedX =  0 - (Plane.grid[0].length/2 - x);
                 int mappedY =  0 + (Plane.grid.length/2 - y);
 
-                //if (Fractal.CheckCoord(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
+                if (Fractal.CheckCoord(temp[0]*Fractal.scaling,  temp[1]*Fractal.scaling)) {
                     
                     //We assign a color based on the number of iterations.
                     int i = (temp[2] + 4)%(colors);
@@ -103,11 +103,11 @@ public class FractalRender {
                 if(((mappedX)*Fractal.scaling)  == 0) temp[0] = 255;
                 if(((mappedY)*Fractal.scaling)  == 0) temp[0] = 255;
                 //If it's in the set, the pixel is black
-                //} else if(Fractal.Color) {
-//                        temp[0] = 0;
-//                        temp[1] = 0;
-//                        temp[2] = 0;
-//                }
+                } else if(Fractal.Color()) {
+                        temp[0] = 0;
+                        temp[1] = 0;
+                        temp[2] = 0;
+                }
             }
         }
     }
