@@ -5,6 +5,8 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.ResourceBundle;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,12 +26,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class controller implements Initializable {
 
     
     @FXML
     private ImageView image;
+   @FXML
+    private ImageView image2;
     @FXML
     private MenuItem Help;
     @FXML
@@ -54,6 +59,8 @@ public class controller implements Initializable {
     private TextField newH;
     @FXML
     private TextField newK;
+    
+    private byte imageData[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
     
     
     public static Stage secondaryStage = new Stage();
@@ -85,10 +92,13 @@ public class controller implements Initializable {
         if(this.image != null) {
         image.setFitHeight(screenHeight);
         image.setFitWidth(screenWidth);
+        
+        image2.setFitHeight(screenHeight);
+        image2.setFitWidth(screenWidth);
 
         image.setImage(img);
 
-        byte imageData[] = FractalRender.GetRender();
+         imageData = FractalRender.GetRender();
 
         writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
 
@@ -171,16 +181,34 @@ public class controller implements Initializable {
                
         
     }
+    
+    
+    
 
     private void printFractal() {
-
-        image.setImage(img);
-
-        byte  imageData[] = FractalRender.GetRender();
+        
+        WritableImage NewImg = new WritableImage((int) screenWidth, (int) screenHeight); 
+        PixelWriter writer2 = NewImg.getPixelWriter();
+        writer2.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
+        
+        image2.setImage(img);
+        FadeTransition transition = new FadeTransition(Duration.seconds(4), image); 
+        
+        imageData = FractalRender.GetRender();
+        
+        image.setOpacity(0);
+       
+        transition.setFromValue(0);
+        transition.setToValue(1.0);
+       //transition.play();
+        
+      
+        
 
         writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
 
-        image.setImage(img);
+        //image.setImage(img);
+        
     }
 
     @FXML
