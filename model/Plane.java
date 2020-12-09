@@ -27,12 +27,18 @@ public class Plane {
     
     //Puts the entire Plane inside a 1D byte array
     public static byte[] toByte() {
-        byte[] stream = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 3];
+        byte[] stream = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
         int marker = 0;
-        for(int[][] n : grid) for(int[] m : n) for(int o : m) {
-                    stream[marker] = (byte)o;       
+        for(int[][] n : grid) for(int[] m : n) {
+            
+            for(int o = 2; o > -1 ; o--) {
+                    stream[marker] = (byte)m[o];
                     marker++;
-                }
+            }
+        stream[marker] = (byte)255;
+            marker++;
+        
+        }
         return stream;
     }
     

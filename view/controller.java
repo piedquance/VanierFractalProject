@@ -3,6 +3,7 @@ package FallProject.view;
 import FallProject.model.*;
 import java.net.URL;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -72,7 +73,7 @@ public class controller implements Initializable {
 
     public PixelWriter writer = img.getPixelWriter();
     
-    public PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteRgbInstance();
+    public PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteBgraInstance();
     
     
     /**
@@ -89,10 +90,14 @@ public class controller implements Initializable {
 
         byte imageData[] = FractalRender.GetRender();
 
-        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 3);
+        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
 
         image.setImage(img);
-
+        String p = "";
+                
+          for(int i = 0; i < 50; i++)  p += imageData[i] + " ";
+          
+            System.out.println(p);
         }
     }
 
@@ -171,9 +176,9 @@ public class controller implements Initializable {
 
         image.setImage(img);
 
-        byte imageData[] = FractalRender.GetRender();
+        byte  imageData[] = FractalRender.GetRender();
 
-        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 3);
+        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
 
         image.setImage(img);
     }
@@ -243,6 +248,7 @@ public class controller implements Initializable {
         
         secondaryStage.close();
         printFractal();
+        
     }
     
     @FXML

@@ -2,7 +2,7 @@ package FallProject.model;
 
 public class Fractal {
 
-        public static String name = "Newton";
+        public static String name = "Koch";
 
     public static double radius = "Newton".equals(name) ? 1999999999 : 2;
     public static int iterationLimit = 200;

@@ -1,10 +1,20 @@
 package FallProject.model;
 
+import FallProject.view.controller;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.nio.ByteBuffer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.PixelFormat;
+import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
+import javafx.scene.image.WritablePixelFormat;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
+import javax.imageio.ImageIO;
 
 public class FractalRender {
 
@@ -17,15 +27,24 @@ public class FractalRender {
 
             paintComponent();
             path.setContent(string);
+            
+            path.setFill(Paint.valueOf("#0AF"));
 
             Group root = new Group(path);
-
-            Scene scene = new Scene(root, 600, 600);
-
-            WritableImage wi = new WritableImage(600, 600);
+     
+            Scene scene = new Scene(root, controller.screenWidth, controller.screenHeight, Color.valueOf("#0FF"));
+            
+            WritableImage wi = new WritableImage((int) controller.screenWidth, (int) controller.screenHeight);
             scene.snapshot(wi);
             
+            PixelReader reader = wi.getPixelReader();
+            
 
+             byte[] array = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 10];
+             
+             reader.getPixels(0, 0, (int) controller.screenWidth, (int) controller.screenHeight, PixelFormat.getByteBgraInstance(), array, 0, (int) controller.screenWidth * 4);
+             
+            return array;
             //System.out.println(string);
         } else {
             iterateAll();
@@ -188,19 +207,19 @@ public class FractalRender {
     //Koch
     private static double angle;
 
-    private static String string = "M 200 150";
+    private static String string = "";
 
     private static Point currPt, pt = new Point();
 
-    private void right(double x) {
+    private static void right(double x) {
         angle += x;
     }
 
-    private void left(double x) {
+    private static void left(double x) {
         angle -= x;
     }
 
-    private void drawFourLines(double side, int level) {
+    private static void drawFourLines(double side, int level) {
         if (level == 0) {
             pt.x = ((int) (Math.cos(angle * Math.PI / 180) * side)) + currPt.x;
             pt.y = ((int) (Math.sin(angle * Math.PI / 180) * side)) + currPt.y;
@@ -222,9 +241,15 @@ public class FractalRender {
 
     public static void paintComponent() {
 
-        int level = 4;
-        double side = 200;
-        currPt = new Point(200, 150);
+        int level = 5;
+        double side = 600;
+        
+        int s = (int)Math.sqrt(Math.pow(side, 2) - Math.pow(side/2, 2))/2;
+        
+        currPt = new Point((int)(controller.screenWidth/2-side/2),(int) (controller.screenHeight/2 - s + s/3));
+        
+        string += "M " + currPt.x + " " + currPt.y;
+        
         angle = 0;
         for (int i = 1; i <= 3; i++) {
             drawFourLines(side, level);
