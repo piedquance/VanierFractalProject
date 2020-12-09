@@ -107,7 +107,7 @@ public class Fractal {
     
     public static boolean Color() {
         switch(name) {
-            case "Netwon" : return true;
+            case "Netwon" : return false;
             
             case "Julia":
                 

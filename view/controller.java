@@ -260,10 +260,10 @@ public class controller implements Initializable {
         
         double H;
         H = Integer.parseInt(newH.getText());
-        Fractal.setH(H);
+        Fractal.h = H;
         double K;
         K = Integer.parseInt(newK.getText());
-        Fractal.setK(K);
+        Fractal.k = K;
         
         //printFractal();
         
