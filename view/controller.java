@@ -61,7 +61,7 @@ public class controller implements Initializable {
     private TextField newK;
     
     private byte imageData[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
-    
+    private byte imageDataPrevious[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
     
     public static Stage secondaryStage = new Stage();
     
@@ -163,13 +163,7 @@ public class controller implements Initializable {
         }
        
         
-        
-        
-        
         scene = new Scene(root);
-
-        
-        
         
         secondaryStage.setTitle(title);
         secondaryStage.setScene(scene);
@@ -177,37 +171,35 @@ public class controller implements Initializable {
         if(event.getSource().equals(About) || event.getSource().equals(Help)) secondaryStage.getScene().getRoot().getChildrenUnmodifiable().get(0).setStyle("-fx-font-size:" + fontSize +";");
         
         secondaryStage.show();
-        
-               
-        
+   
     }
-    
-    
-    
 
     private void printFractal() {
         
         WritableImage NewImg = new WritableImage((int) screenWidth, (int) screenHeight); 
         PixelWriter writer2 = NewImg.getPixelWriter();
-        writer2.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
+        imageDataPrevious = imageData;
         
-        image2.setImage(img);
-        FadeTransition transition = new FadeTransition(Duration.seconds(4), image); 
+        writer2.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageDataPrevious, 0, (int) image.getFitWidth() * 4);
+        
+        image2.setImage(NewImg);
+        
+        FadeTransition transition = new FadeTransition(Duration.seconds(2.5), image); 
         
         imageData = FractalRender.GetRender();
         
-        image.setOpacity(0);
+        image.setOpacity(0.5);
        
         transition.setFromValue(0);
         transition.setToValue(1.0);
-       //transition.play();
+        transition.play();
         
       
         
 
         writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
 
-        //image.setImage(img);
+        image.setImage(img);
         
     }
 

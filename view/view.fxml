@@ -4,6 +4,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FallProject.view.controller">
@@ -27,21 +28,23 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Variables">
             <items>
-                  <MenuItem fx:id="IterationCount" mnemonicParsing="false" text="Iteration Count" onAction="#menuButtons"/>
-                  <MenuItem fx:id="Radius" mnemonicParsing="false" text="Radius" onAction="#menuButtons"/>
-                  <MenuItem fx:id="Position" mnemonicParsing="false" text="Position" onAction="#menuButtons"/>
-                  <MenuItem fx:id="Axis" mnemonicParsing="false" text="Axis" onAction="#menuButtons"/>
-                  <MenuItem fx:id="ColorGradient" mnemonicParsing="false" text="Color Gradient" onAction="#menuButtons"/>
-                  <MenuItem fx:id="FontSize" mnemonicParsing="false" text="Font Size" onAction="#menuButtons"/>
+                  <MenuItem fx:id="IterationCount" mnemonicParsing="false" onAction="#menuButtons" text="Iteration Count" />
+                  <MenuItem fx:id="Radius" mnemonicParsing="false" onAction="#menuButtons" text="Radius" />
+                  <MenuItem fx:id="Position" mnemonicParsing="false" onAction="#menuButtons" text="Position" />
+                  <MenuItem fx:id="Axis" mnemonicParsing="false" onAction="#menuButtons" text="Axis" />
+                  <MenuItem fx:id="ColorGradient" mnemonicParsing="false" onAction="#menuButtons" text="Color Gradient" />
+                  <MenuItem fx:id="FontSize" mnemonicParsing="false" onAction="#menuButtons" text="Font Size" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
    </top>
-   
    <center>
-       
-      <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
-      <ImageView fx:id="image2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="200.0" prefWidth="186.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="image2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
    </center>
 </BorderPane>
