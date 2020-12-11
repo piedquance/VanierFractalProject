@@ -88,40 +88,50 @@ public class FractalRender {
             }
         }
     }
+    
+    static int[][] gradient= {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
 
+
+    public static void setGradient(int[][] gradient) {
+        FractalRender.gradient = gradient;
+    }
+    
+    
+    
+    
     //This method assigns a rgb value to each pixel based on the iteration count.
-    public static void addColor() {
+    static public void addColor() {
 
         int colors = 24;
         //int[][] gradient = Gradient(colors);
 
 //Here we have the color gradient.
-        int[][] gradient = {
-            {0, 255, 0},
-            {0, 255, 64},
-            {0, 255, 128},
-            {0, 255, 192},
-            {0, 255, 255},
-            {0, 192, 255},
-            {0, 128, 255},
-            {0, 64, 255},
-            {0, 0, 255},
-            {64, 0, 255},
-            {128, 0, 255},
-            {192, 0, 255},
-            {255, 0, 255},
-            {255, 0, 192},
-            {255, 0, 128},
-            {255, 0, 64},
-            {255, 0, 0},
-            {255, 64, 0},
-            {255, 128, 0},
-            {255, 192, 0},
-            {255, 255, 0},
-            {192, 255, 0},
-            {128, 255, 0},
-            {64, 255, 0}
-        };
+        int[][] gradient = FractalRender.gradient;
 
 //        for(int[] m: gradient){
 //            for(int n: m) System.out.print(n + " ");

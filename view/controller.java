@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -33,7 +34,7 @@ public class controller implements Initializable {
     
     @FXML
     private ImageView image;
-   @FXML
+    @FXML
     private ImageView image2;
     @FXML
     private MenuItem Help;
@@ -59,7 +60,9 @@ public class controller implements Initializable {
     private TextField newH;
     @FXML
     private TextField newK;
-    
+    @FXML
+    private TextField ColorNumber;
+
     private byte imageData[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
     private byte imageDataPrevious[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
     
@@ -304,6 +307,135 @@ public class controller implements Initializable {
 //        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 3);
 //
 //        image.setImage(img);
+    }
+    
+    @FXML
+    private void submitColorGradient(ActionEvent event){
+        secondaryStage.close();
+        
+        int[][] option1 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
+        int[][] option2 = {
+        {64, 255, 0},
+        {128, 255, 0},
+        {192, 255, 0},
+        {255, 255, 0},
+        {255, 192, 0},
+        {255, 128, 0},
+        {255, 64, 0},
+        {255, 0, 0},
+        {255, 0, 64},
+        {255, 0, 128},
+        {255, 0, 192},
+        {255, 0, 255},
+        {192, 0, 255},
+        {128, 0, 255},
+        {64, 0, 255},
+        {0, 0, 255},
+        {0, 64, 255},
+        {0, 128, 255},
+        {0, 192, 255},
+        {0, 255, 255},
+        {0, 255, 192},
+        {0, 255, 128},
+        {0, 255, 64},
+        {0, 255, 0},
+        };
+        int[][] option3 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
+        int[][] option4 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
+
+        int selected = Integer.parseInt(ColorNumber.getText());
+        switch (selected) {
+            case 1:
+                FractalRender.setGradient(option1);
+                break;
+            case 2:
+                FractalRender.setGradient(option2);
+                break;
+            case 3:
+                FractalRender.setGradient(option3);
+                break;
+            case 4:
+                FractalRender.setGradient(option4);
+                break;
+            default:
+                break;
+        }
+        
     }
     
 }
