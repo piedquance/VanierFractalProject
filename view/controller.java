@@ -1,10 +1,14 @@
 package FallProject.view;
 
 import FallProject.model.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.application.Platform;
@@ -213,6 +217,7 @@ public class controller implements Initializable {
         
         
         System.out.println("BRRRRRRRRRRR");
+        WriteFile("data");
         
     }
 
@@ -312,6 +317,8 @@ public class controller implements Initializable {
         Fractal.name = "Mandelbrot";
 
         printFractal();
+        
+        
 
 //        image.setImage(img);
 //
@@ -352,4 +359,55 @@ public class controller implements Initializable {
         
     }
     
+    /*The database that we decided to go for a simple one: using a text file 
+      where we can both read and write from the file. The text will consist of 
+      variables that can compose a fractal. When the user changes to a fractal, 
+      its variables will be written in the text so that we can refer back to it.*/
+    
+    /*This function reads from the database (file)*/
+    public static void ReadFile(File file) {
+
+        try {
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNext()) {
+                String fractalName = scanner.next();
+                scanner.useDelimiter("|");
+                int iterationCount = scanner.nextInt();
+                scanner.useDelimiter("|");
+                int radius = scanner.nextInt();
+                
+                Fractal.iterate = iterationCount;
+                Fractal.setRadius(radius);
+                Fractal.name = fractalName;
+            }
+            scanner.close();
+            
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File is not found");
+            e.printStackTrace();
+        }
+    }
+    
+    /*This it the function that writes on the database (file)*/
+    public static void WriteFile(String file) {
+
+        try {
+            PrintWriter writer = new PrintWriter(file);
+            String FractalName = Fractal.name;
+            String iterationCount = "" + Fractal.iterate;
+            String radius = "" + Fractal.getRadius();
+            String scaling = "" +Fractal.scaling;
+            String h = ""+Fractal.h;
+            String k = ""+ Fractal.k;
+            
+            writer.println(FractalName + " | " + iterationCount + " | " + radius + " | " + scaling + " | " + h + " | " + k);
+            writer.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File is not found");
+            e.printStackTrace();
+        }
+    }
+
 }
