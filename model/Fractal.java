@@ -6,7 +6,7 @@ public class Fractal {
 
     public static double radius = "Newton".equals(name) ? 1999999999 : 2;
     public static int iterationLimit = 200;
-    public static int breakpoint = 20;
+    public static int breakpoint = 50;
     public static int iterate = 0;
     public static double scaling = 0.004;
     //0.004 gives no scale lines
@@ -155,6 +155,14 @@ public class Fractal {
         Fractal.scaling = scaling;
     }
 
+    public static int getBreakpoint() {
+        return breakpoint;
+    }
+    public static void setBreakpoint(int breakpoint) {
+        Fractal.breakpoint = breakpoint;
+    }
+
+    
 }
 
 
