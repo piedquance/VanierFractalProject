@@ -31,7 +31,7 @@
                   <MenuItem fx:id="IterationCount" mnemonicParsing="false" onAction="#menuButtons" text="Iteration Count" />
                   <MenuItem fx:id="Radius" mnemonicParsing="false" onAction="#menuButtons" text="Radius" />
                   <MenuItem fx:id="Position" mnemonicParsing="false" onAction="#menuButtons" text="Position" />
-                  <MenuItem fx:id="Axis" mnemonicParsing="false" onAction="#menuButtons" text="Axis" />
+                  <MenuItem fx:id="Scaling" mnemonicParsing="false" onAction="#menuButtons" text="Scaling" />
                   <MenuItem fx:id="ColorGradient" mnemonicParsing="false" onAction="#menuButtons" text="Color Gradient" />
                   <MenuItem fx:id="FontSize" mnemonicParsing="false" onAction="#menuButtons" text="Font Size" />
             </items>

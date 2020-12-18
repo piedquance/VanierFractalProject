@@ -8,7 +8,7 @@ public class Fractal {
     public static int iterationLimit = 200;
     public static int breakpoint = 20;
     public static int iterate = 0;
-    public static double scaling = 0.004;
+    public static double scaling = 0.002;
     //0.004 gives no scale lines
     //Scaling value will sometimes not work, idk why. If it happens just add a 1 and hope for the best
 
@@ -149,6 +149,14 @@ public class Fractal {
 
     public static void setH(double h) {
         Fractal.h = h;
+    }
+
+    public static double getScaling() {
+        return Fractal.scaling;
+    }
+
+    public static void setScaling(double scaling) {
+        Fractal.scaling = scaling;
     }
 
 }

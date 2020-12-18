@@ -47,7 +47,7 @@ public class controller implements Initializable {
     @FXML
     private MenuItem Position;
     @FXML
-    private MenuItem Axis;
+    private MenuItem Scaling;
     @FXML
     private MenuItem ColorGradient;
     @FXML
@@ -60,6 +60,8 @@ public class controller implements Initializable {
     private TextField newH;
     @FXML
     private TextField newK;
+    @FXML
+    private TextField scaleFactor;
     @FXML
     private TextField ColorNumber;
 
@@ -134,10 +136,10 @@ public class controller implements Initializable {
            // scene.getRoot().getChildrenUnmodifiable().get(0).setStyle("fx-font-size:" + fontSize +";");
             title = "About";
         }
-        else if (event.getSource().equals(Axis)) {
-            root = FXMLLoader.load(getClass().getResource("axis.fxml"));
+        else if (event.getSource().equals(Scaling)) {
+            root = FXMLLoader.load(getClass().getResource("scaling.fxml"));
 //            scene.getStylesheets().add(getClass().getResource("axis.css").toExternalForm());
-            title = "Axis";
+            title = "Scaling";
         }
         else if (event.getSource().equals(IterationCount)) {
             root = FXMLLoader.load(getClass().getResource("iterationCount.fxml"));
@@ -308,6 +310,14 @@ public class controller implements Initializable {
 //
 //        image.setImage(img);
     }
+    
+    @FXML
+    private void submitScaling(ActionEvent event){
+        
+        double scale = Integer.parseInt(scaleFactor.getText());
+        Fractal.setScaling(scale);
+    }
+    
     
     @FXML
     private void submitColorGradient(ActionEvent event){
