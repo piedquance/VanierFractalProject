@@ -17,6 +17,143 @@ import javafx.scene.shape.SVGPath;
 import javax.imageio.ImageIO;
 
 public class FractalRender {
+    
+    public static String gradientName = "0";
+    
+    static int[][] gradient = new int[24][3];
+    
+    static int[][] option0 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+    };
+    
+     static int[][] option1 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
+        static int[][] option2 = {
+        {64, 255, 0},
+        {128, 255, 0},
+        {192, 255, 0},
+        {255, 255, 0},
+        {255, 192, 0},
+        {255, 128, 0},
+        {255, 64, 0},
+        {255, 0, 0},
+        {255, 0, 64},
+        {255, 0, 128},
+        {255, 0, 192},
+        {255, 0, 255},
+        {192, 0, 255},
+        {128, 0, 255},
+        {64, 0, 255},
+        {0, 0, 255},
+        {0, 64, 255},
+        {0, 128, 255},
+        {0, 192, 255},
+        {0, 255, 255},
+        {0, 255, 192},
+        {0, 255, 128},
+        {0, 255, 64},
+        {0, 255, 0},
+        };
+       static int[][] option3 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
+       static int[][] option4 = {
+        {0, 255, 0},
+        {0, 255, 64},
+        {0, 255, 128},
+        {0, 255, 192},
+        {0, 255, 255},
+        {0, 192, 255},
+        {0, 128, 255},
+        {0, 64, 255},
+        {0, 0, 255},
+        {64, 0, 255},
+        {128, 0, 255},
+        {192, 0, 255},
+        {255, 0, 255},
+        {255, 0, 192},
+        {255, 0, 128},
+        {255, 0, 64},
+        {255, 0, 0},
+        {255, 64, 0},
+        {255, 128, 0},
+        {255, 192, 0},
+        {255, 255, 0},
+        {192, 255, 0},
+        {128, 255, 0},
+        {64, 255, 0}
+        };
+
 
     //GetRender renders the selected fractal.
     public static byte[] GetRender() {
@@ -89,36 +226,22 @@ public class FractalRender {
         }
     }
     
-    static int[][] gradient= {
-        {0, 255, 0},
-        {0, 255, 64},
-        {0, 255, 128},
-        {0, 255, 192},
-        {0, 255, 255},
-        {0, 192, 255},
-        {0, 128, 255},
-        {0, 64, 255},
-        {0, 0, 255},
-        {64, 0, 255},
-        {128, 0, 255},
-        {192, 0, 255},
-        {255, 0, 255},
-        {255, 0, 192},
-        {255, 0, 128},
-        {255, 0, 64},
-        {255, 0, 0},
-        {255, 64, 0},
-        {255, 128, 0},
-        {255, 192, 0},
-        {255, 255, 0},
-        {192, 255, 0},
-        {128, 255, 0},
-        {64, 255, 0}
-        };
+    
 
-
-    public static void setGradient(int[][] gradient) {
-        FractalRender.gradient = gradient;
+    public static void setGradient() {
+        switch(gradientName) {
+            case "0" :
+                FractalRender.gradient = FractalRender.option0;
+                break;
+            case "1":
+                FractalRender.gradient = FractalRender.option1;
+            break;
+            
+            default:
+                System.out.println("No gradient found");
+            break;
+        }
+        
     }
     
     
@@ -126,12 +249,14 @@ public class FractalRender {
     
     //This method assigns a rgb value to each pixel based on the iteration count.
     static public void addColor() {
-
+        
+        System.out.println("The current name is " + FractalRender.gradientName);
+        
         int colors = 24;
         //int[][] gradient = Gradient(colors);
 
 //Here we have the color gradient.
-        int[][] gradient = FractalRender.gradient;
+        setGradient();
 
 //        for(int[] m: gradient){
 //            for(int n: m) System.out.print(n + " ");
@@ -277,7 +402,7 @@ public class FractalRender {
             right(120);
         }
         string += " Z";
-        System.out.println(string);
+       // System.out.println(string);
     }
 
 }

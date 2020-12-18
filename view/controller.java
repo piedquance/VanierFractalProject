@@ -71,6 +71,8 @@ public class controller implements Initializable {
     public static Stage secondaryStage = new Stage();
     
    public static int fontSize = 12;
+   
+   public static double imageX, imageY;
     
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
 
@@ -101,6 +103,9 @@ public class controller implements Initializable {
         image2.setFitHeight(screenHeight);
         image2.setFitWidth(screenWidth);
 
+        imageX = image.getFitWidth();
+        imageY = image.getFitHeight();
+        
         image.setImage(img);
 
          imageData = FractalRender.GetRender();
@@ -110,9 +115,9 @@ public class controller implements Initializable {
         image.setImage(img);
         String p = "";
                 
-          for(int i = 0; i < 50; i++)  p += imageData[i] + " ";
-          
-            System.out.println(p);
+//          for(int i = 0; i < 50; i++)  p += imageData[i] + " ";
+//          
+//            System.out.println(p);
         }
     }
 
@@ -185,7 +190,7 @@ public class controller implements Initializable {
         PixelWriter writer2 = NewImg.getPixelWriter();
         imageDataPrevious = imageData;
         
-        writer2.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageDataPrevious, 0, (int) image.getFitWidth() * 4);
+        writer2.setPixels(0, 0, (int) imageX, (int) imageY, pixelFormat, imageDataPrevious, 0, (int) imageX * 4);
         
         image2.setImage(NewImg);
         
@@ -202,9 +207,12 @@ public class controller implements Initializable {
       
         
 
-        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
+        writer.setPixels(0, 0, (int) imageX, (int) imageY, pixelFormat, imageData, 0, (int) imageX * 4);
 
         image.setImage(img);
+        
+        
+        System.out.println("BRRRRRRRRRRR");
         
     }
 
@@ -317,137 +325,30 @@ public class controller implements Initializable {
     @FXML
     private void submitScaling(ActionEvent event){
         
-        double scale = Integer.parseInt(scaleFactor.getText());
+        System.err.println("scaling");
+        
+        double scale = Double.parseDouble(scaleFactor.getText());
         Fractal.setScaling(scale);
+        
+        System.out.println(Fractal.scaling);
+        
+       // printFractal();
+        
+        
+        secondaryStage.close();
     }
     
     
     @FXML
     private void submitColorGradient(ActionEvent event){
+        
+        
+       FractalRender.gradientName = ColorNumber.getText();
+        
+        System.out.println(FractalRender.gradientName);
+        
         secondaryStage.close();
         
-        int[][] option1 = {
-        {0, 255, 0},
-        {0, 255, 64},
-        {0, 255, 128},
-        {0, 255, 192},
-        {0, 255, 255},
-        {0, 192, 255},
-        {0, 128, 255},
-        {0, 64, 255},
-        {0, 0, 255},
-        {64, 0, 255},
-        {128, 0, 255},
-        {192, 0, 255},
-        {255, 0, 255},
-        {255, 0, 192},
-        {255, 0, 128},
-        {255, 0, 64},
-        {255, 0, 0},
-        {255, 64, 0},
-        {255, 128, 0},
-        {255, 192, 0},
-        {255, 255, 0},
-        {192, 255, 0},
-        {128, 255, 0},
-        {64, 255, 0}
-        };
-        int[][] option2 = {
-        {64, 255, 0},
-        {128, 255, 0},
-        {192, 255, 0},
-        {255, 255, 0},
-        {255, 192, 0},
-        {255, 128, 0},
-        {255, 64, 0},
-        {255, 0, 0},
-        {255, 0, 64},
-        {255, 0, 128},
-        {255, 0, 192},
-        {255, 0, 255},
-        {192, 0, 255},
-        {128, 0, 255},
-        {64, 0, 255},
-        {0, 0, 255},
-        {0, 64, 255},
-        {0, 128, 255},
-        {0, 192, 255},
-        {0, 255, 255},
-        {0, 255, 192},
-        {0, 255, 128},
-        {0, 255, 64},
-        {0, 255, 0},
-        };
-        int[][] option3 = {
-        {0, 255, 0},
-        {0, 255, 64},
-        {0, 255, 128},
-        {0, 255, 192},
-        {0, 255, 255},
-        {0, 192, 255},
-        {0, 128, 255},
-        {0, 64, 255},
-        {0, 0, 255},
-        {64, 0, 255},
-        {128, 0, 255},
-        {192, 0, 255},
-        {255, 0, 255},
-        {255, 0, 192},
-        {255, 0, 128},
-        {255, 0, 64},
-        {255, 0, 0},
-        {255, 64, 0},
-        {255, 128, 0},
-        {255, 192, 0},
-        {255, 255, 0},
-        {192, 255, 0},
-        {128, 255, 0},
-        {64, 255, 0}
-        };
-        int[][] option4 = {
-        {0, 255, 0},
-        {0, 255, 64},
-        {0, 255, 128},
-        {0, 255, 192},
-        {0, 255, 255},
-        {0, 192, 255},
-        {0, 128, 255},
-        {0, 64, 255},
-        {0, 0, 255},
-        {64, 0, 255},
-        {128, 0, 255},
-        {192, 0, 255},
-        {255, 0, 255},
-        {255, 0, 192},
-        {255, 0, 128},
-        {255, 0, 64},
-        {255, 0, 0},
-        {255, 64, 0},
-        {255, 128, 0},
-        {255, 192, 0},
-        {255, 255, 0},
-        {192, 255, 0},
-        {128, 255, 0},
-        {64, 255, 0}
-        };
-
-        int selected = Integer.parseInt(ColorNumber.getText());
-        switch (selected) {
-            case 1:
-                FractalRender.setGradient(option1);
-                break;
-            case 2:
-                FractalRender.setGradient(option2);
-                break;
-            case 3:
-                FractalRender.setGradient(option3);
-                break;
-            case 4:
-                FractalRender.setGradient(option4);
-                break;
-            default:
-                break;
-        }
         
     }
     
