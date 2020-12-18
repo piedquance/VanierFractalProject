@@ -15,10 +15,6 @@ public class Fractal {
     public static double k = 0;
     public static double h = 0;
 
-
-
-
-
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
 
