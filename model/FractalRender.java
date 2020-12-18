@@ -18,36 +18,9 @@ import javax.imageio.ImageIO;
 
 public class FractalRender {
     
-    public static String gradientName = "0";
+    public static String gradientName = "1";
     
     static int[][] gradient = new int[24][3];
-    
-    static int[][] option0 = {
-        {0, 255, 0},
-        {0, 255, 64},
-        {0, 255, 128},
-        {0, 255, 192},
-        {0, 255, 255},
-        {0, 192, 255},
-        {0, 128, 255},
-        {0, 64, 255},
-        {0, 0, 255},
-        {64, 0, 255},
-        {128, 0, 255},
-        {192, 0, 255},
-        {255, 0, 255},
-        {255, 0, 192},
-        {255, 0, 128},
-        {255, 0, 64},
-        {255, 0, 0},
-        {255, 64, 0},
-        {255, 128, 0},
-        {255, 192, 0},
-        {255, 255, 0},
-        {192, 255, 0},
-        {128, 255, 0},
-        {64, 255, 0}
-    };
     
      static int[][] option1 = {
         {0, 255, 0},
@@ -230,12 +203,19 @@ public class FractalRender {
 
     public static void setGradient() {
         switch(gradientName) {
-            case "0" :
-                FractalRender.gradient = FractalRender.option0;
-                break;
-            case "1":
+            case "1" :
                 FractalRender.gradient = FractalRender.option1;
+                break;
+            case "2":
+                FractalRender.gradient = FractalRender.option2;
             break;
+            case "3":
+                FractalRender.gradient = FractalRender.option3;
+            break;
+            case "4":
+                FractalRender.gradient = FractalRender.option4;
+            break;
+
             
             default:
                 System.out.println("No gradient found");
