@@ -403,7 +403,7 @@ public class controller implements Initializable {
                 scanner.useDelimiter("|");
                 int radius = scanner.nextInt();
                 
-                Fractal.iterate = iterationCount;
+                Fractal.iterationLimit = iterationCount;
                 Fractal.setRadius(radius);
                 Fractal.name = fractalName;
             }
@@ -422,7 +422,7 @@ public class controller implements Initializable {
         try {
             PrintWriter writer = new PrintWriter(file);
             String FractalName = Fractal.name;
-            String iterationCount = "" + Fractal.iterate;
+            String iterationCount = "" + Fractal.iterationLimit;
             String radius = "" + Fractal.getRadius();
             String scaling = "" +Fractal.scaling;
             String h = ""+Fractal.h;
