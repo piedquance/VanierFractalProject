@@ -429,7 +429,7 @@ public class FractalRender {
         
         currPt = new Point((int)(controller.screenWidth/2-side/2),(int) (controller.screenHeight/2 - s + s/3));
         
-        string += "M " + currPt.x + " " + currPt.y;
+        string = "M " + currPt.x + " " + currPt.y;
         
         angle = 0;
         for (int i = 1; i <= 3; i++) {

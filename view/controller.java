@@ -211,8 +211,7 @@ public class controller implements Initializable {
 //            scene.getStylesheets().add(getClass().getResource("fontsize.css").toExternalForm());
             title = "Font Size";
         }
-       
-        
+
         scene = new Scene(root);
         
         secondaryStage.setTitle(title);
@@ -220,13 +219,7 @@ public class controller implements Initializable {
         
         if(event.getSource().equals(About) || event.getSource().equals(Help)) secondaryStage.getScene().getRoot().getChildrenUnmodifiable().get(0).setStyle("-fx-font-family:monospace; -fx-font-size:" + fontSize +";");
         
-
-         
         secondaryStage.show();
-        
-        
-             
-   
     }
     
     @FXML
@@ -249,9 +242,6 @@ public class controller implements Initializable {
         transition.setFromValue(0);
         transition.setToValue(1.0);
         transition.play();
-        
-      
-        
 
         writer.setPixels(0, 0, (int) imageX, (int) imageY, pixelFormat, imageData, 0, (int) imageX * 4);
 
