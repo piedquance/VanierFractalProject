@@ -157,6 +157,7 @@ public class FractalRender {
             return array;
             //System.out.println(string);
         } else {
+            Plane.resetGrid();
             iterateAll();
             addColor();
             return Plane.toByte();
@@ -215,17 +216,12 @@ public class FractalRender {
             case "4":
                 FractalRender.gradient = FractalRender.option4;
             break;
-
-            
             default:
                 System.out.println("No gradient found");
             break;
-        }
-        
+        }   
     }
-    
-    
-    
+       
     
     //This method assigns a rgb value to each pixel based on the iteration count.
     static public void addColor() {

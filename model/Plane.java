@@ -8,6 +8,10 @@ public class Plane {
     public static int grid[][][] = new int[(int)controller.screenHeight][(int)controller.screenWidth][3];
 
 
+    public static void resetGrid() {
+        grid = new int[(int)controller.screenHeight][(int)controller.screenWidth][3];
+    }
+    
     
     //Maps a coord to the array and sets the 3 values inside of it, either rgb or 2 values for a coord and 1 for the iteration count
     public static void setCoord(int x, int y, int[] value) {
