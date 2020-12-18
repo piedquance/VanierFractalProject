@@ -270,7 +270,7 @@ public class controller implements Initializable {
     @FXML
     private void submitRadius(ActionEvent event){
         double radius;
-        radius = Integer.parseInt(newRadius.getText());
+        radius = Double.parseDouble(newRadius.getText());
         Fractal.setRadius(radius);
         
         secondaryStage.close();
@@ -290,10 +290,10 @@ public class controller implements Initializable {
         secondaryStage.close();
         
         double H;
-        H = Integer.parseInt(newH.getText());
+        H = Double.parseDouble(newH.getText());
         Fractal.h = H;
         double K;
-        K = Integer.parseInt(newK.getText());
+        K = Double.parseDouble(newK.getText());
         Fractal.k = K;
         
         //printFractal();
