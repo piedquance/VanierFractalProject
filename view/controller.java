@@ -267,7 +267,10 @@ public class controller implements Initializable {
         if(Fractal.name == "Koch"){
             FractalRender.setLevel(iterationCount);
         }
-        else{Fractal.setIterationLimit(iterationCount);}
+        else{
+            Fractal.setIterationLimit(iterationCount);
+            Fractal.setBreakpoint(iterationCount/4);
+        };
         
         secondaryStage.close();
         printFractal();
