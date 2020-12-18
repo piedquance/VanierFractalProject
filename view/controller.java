@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +32,6 @@ import javafx.util.Duration;
 
 public class controller implements Initializable {
 
-    
     @FXML
     private ImageView image;
     @FXML
@@ -64,6 +64,8 @@ public class controller implements Initializable {
     private TextField scaleFactor;
     @FXML
     private TextField ColorNumber;
+    @FXML
+    private TextField fontsizetext;
 
     private byte imageData[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
     private byte imageDataPrevious[] = new byte[(int)controller.screenWidth * (int)controller.screenHeight * 4];
@@ -93,6 +95,7 @@ public class controller implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -114,21 +117,16 @@ public class controller implements Initializable {
 
         image.setImage(img);
         String p = "";
-                
-//          for(int i = 0; i < 50; i++)  p += imageData[i] + " ";
-//          
-//            System.out.println(p);
+        
         }
+         
     }
-
+    
     @FXML
     private void menuButtons(ActionEvent event) throws Exception {
         Parent root = new Pane();
         String title = " ";
         Scene scene = new Scene(root);
-        
-
-
         if (event.getSource().equals(Help)) {
             root = FXMLLoader.load(getClass().getResource("help.fxml"));
             scene.getStylesheets().add(getClass().getResource("help.css").toExternalForm());
@@ -178,12 +176,12 @@ public class controller implements Initializable {
         secondaryStage.setTitle(title);
         secondaryStage.setScene(scene);
         
-        if(event.getSource().equals(About) || event.getSource().equals(Help)) secondaryStage.getScene().getRoot().getChildrenUnmodifiable().get(0).setStyle("-fx-font-size:" + fontSize +";");
+        if(event.getSource().equals(About) || event.getSource().equals(Help)) secondaryStage.getScene().getRoot().getChildrenUnmodifiable().get(0).setStyle("-fx-font-family:monospace; -fx-font-size:" + fontSize +";");
         
         secondaryStage.show();
    
     }
-
+    @FXML
     private void printFractal() {
         
         WritableImage NewImg = new WritableImage((int) screenWidth, (int) screenHeight); 
@@ -215,7 +213,6 @@ public class controller implements Initializable {
         System.out.println("BRRRRRRRRRRR");
         
     }
-
     @FXML
     private void FractalHandlerJulia(ActionEvent event) {
 
@@ -224,7 +221,6 @@ public class controller implements Initializable {
         printFractal();
 
     }
-
     @FXML
     private void FractalHandlerMandelbrot(ActionEvent event) {
 
@@ -233,7 +229,6 @@ public class controller implements Initializable {
         printFractal();
 
     }
-
     @FXML
     private void FractalHandlerNewton(ActionEvent event) {
 
@@ -242,7 +237,6 @@ public class controller implements Initializable {
         printFractal();
 
     }
-
     @FXML
     private void FractalHandlerkKoch(ActionEvent event) {
 
@@ -251,14 +245,12 @@ public class controller implements Initializable {
         printFractal();
 
     }
-
     @FXML
     private void ExitApplication(ActionEvent event) {
         Platform.exit();
     }
     
-        
-    @FXML
+    @FXML 
     private void closeWindow(ActionEvent event) {
     secondaryStage.close();
     }
@@ -275,7 +267,6 @@ public class controller implements Initializable {
         secondaryStage.close();
         printFractal();
     }
-    
     @FXML
     private void submitRadius(ActionEvent event){
         double radius;
@@ -286,16 +277,14 @@ public class controller implements Initializable {
         printFractal();
         
     }
-    
     @FXML
     private void sumbitFontSize(ActionEvent event) {
   
         //this changes the text font size to given size.
-        fontSize = 40;
+        fontSize = Integer.parseInt(fontsizetext.getText());
         
         secondaryStage.close();
     }
-    
     @FXML
     private void submitPosition(ActionEvent event){
         secondaryStage.close();
@@ -321,7 +310,6 @@ public class controller implements Initializable {
 //
 //        image.setImage(img);
     }
-    
     @FXML
     private void submitScaling(ActionEvent event){
         
@@ -337,7 +325,6 @@ public class controller implements Initializable {
         
         secondaryStage.close();
     }
-    
     
     @FXML
     private void submitColorGradient(ActionEvent event){

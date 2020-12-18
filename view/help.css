@@ -1,4 +1,4 @@
-/*
- * Empty Stylesheet file.
- */
-
+TextArea.content {
+    -fx-color: Red;
+    -fx-font-family: "Courrier New", Courrier, monospace;
+}

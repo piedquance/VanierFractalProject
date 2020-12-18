@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="184.0" prefWidth="396.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FallProject.view.controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="396.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FallProject.view.controller">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+      <HBox prefHeight="0" prefWidth="200.0" spacing="0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Set Axis:" wrappingWidth="126.13671875" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Set Scaling:" wrappingWidth="126.13671875" />
             <TextField fx:id="scaleFactor" prefHeight="25.0" prefWidth="335.0" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Submit" onAction="#submitScaling"/>
+      <Button mnemonicParsing="false" prefHeight="0" prefWidth="77.0" text="Submit" onAction="#submitScaling"/>
    </children>
    <padding>
       <Insets bottom="25.0" left="25.0" right="10.0" top="25.0" />
