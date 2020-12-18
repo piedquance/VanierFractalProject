@@ -248,10 +248,21 @@ public class FractalRender {
             drawFourLines(side / 3.0, level - 1);
         }
     }
+    
+    private static int level = 1;
+
+    
+    public static int getLevel() {
+        return level;
+    }
+    public static void setLevel(int level) {
+        FractalRender.level = level;
+    }
+    
 
     public static void paintComponent() {
 
-        int level = 5;
+        int level = FractalRender.level;
         double side = 600;
         
         int s = (int)Math.sqrt(Math.pow(side, 2) - Math.pow(side/2, 2))/2;

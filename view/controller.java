@@ -193,7 +193,7 @@ public class controller implements Initializable {
         
         imageData = FractalRender.GetRender();
         
-        image.setOpacity(0.5);
+        image.setOpacity(0);
        
         transition.setFromValue(0);
         transition.setToValue(1.0);
@@ -259,7 +259,10 @@ public class controller implements Initializable {
     private void submitIterationCount(ActionEvent event){
         int iterationCount;
         iterationCount = Integer.parseInt(newItCount.getText());
-        Fractal.setIterationLimit(iterationCount);
+        if(Fractal.name == "Koch"){
+            FractalRender.setLevel(iterationCount);
+        }
+        else{Fractal.setIterationLimit(iterationCount);}
         
         secondaryStage.close();
         printFractal();
