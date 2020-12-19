@@ -208,7 +208,6 @@ public class FractalRender {
              reader.getPixels(0, 0, (int) controller.screenWidth, (int) controller.screenHeight, PixelFormat.getByteBgraInstance(), array, 0, (int) controller.screenWidth * 4);
              
             return array;
-            //System.out.println(string);
         } else {
             Plane.resetGrid();
             
@@ -294,18 +293,11 @@ public class FractalRender {
     //This method assigns a rgb value to each pixel based on the iteration count.
     static public void addColor() {
         
-        System.out.println("The current name is " + FractalRender.gradientName);
-        
         int colors = 24;
-        //int[][] gradient = Gradient(colors);
 
 //Here we have the color gradient.
         setGradient();
 
-//        for(int[] m: gradient){
-//            for(int n: m) System.out.print(n + " ");
-//            System.out.println("");
-//        }
         for (int y = 0; y < Plane.grid.length; y++) {
             for (int x = 0; x < Plane.grid[y].length; x++) {
 
@@ -451,7 +443,6 @@ public class FractalRender {
             right(120);
         }
         string += " Z";
-       // System.out.println(string);
     }
 
 }

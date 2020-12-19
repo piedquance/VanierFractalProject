@@ -229,7 +229,7 @@ public class controller implements Initializable {
     
     @FXML
     private void printFractal() throws IOException {
-        ReadFile();
+        //ReadFile();
         
         WritableImage NewImg = new WritableImage((int) screenWidth, (int) screenHeight); 
         PixelWriter writer2 = NewImg.getPixelWriter();
@@ -253,7 +253,7 @@ public class controller implements Initializable {
 
         image.setImage(img);
         
-        WriteFile();
+        //WriteFile();
         
         
         
@@ -359,13 +359,10 @@ public class controller implements Initializable {
     }
     @FXML
     private void submitScaling(ActionEvent event){
-        
-        System.err.println("scaling");
-        
+              
         double scale = Double.parseDouble(scaleFactor.getText());
         Fractal.setScaling(1/(scale*250));
-        
-        System.out.println(Fractal.scaling);
+       
         
        // printFractal();
         
@@ -375,12 +372,7 @@ public class controller implements Initializable {
     
     @FXML
     private void submitColorGradient(ActionEvent event){
-        
-        
        FractalRender.gradientName = ColorNumber.getText();
-        
-        System.out.println(FractalRender.gradientName);
-        
         secondaryStage.close();
         
         
