@@ -142,7 +142,7 @@ public class controller implements Initializable {
             newK.promptTextProperty().setValue(String.valueOf(Fractal.k));
             PositionCheck = false;
         } else if(ScalingCheck) {
-            scaleFactor.promptTextProperty().setValue(String.valueOf(Fractal.scaling));
+            scaleFactor.promptTextProperty().setValue(String.valueOf(1 / (Fractal.scaling * 250)));
             ScalingCheck = false;
         } else if(ColorCheck) {
             ColorNumber.promptTextProperty().setValue(String.valueOf(FractalRender.gradientName));
