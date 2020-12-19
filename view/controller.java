@@ -356,7 +356,7 @@ public class controller implements Initializable {
         System.err.println("scaling");
         
         double scale = Double.parseDouble(scaleFactor.getText());
-        Fractal.setScaling(scale);
+        Fractal.setScaling(1/(scale*250));
         
         System.out.println(Fractal.scaling);
         
