@@ -336,9 +336,9 @@ public class FractalRender {
                     }
                     //If it's in the set, the pixel is black
                 } else if (Fractal.Color()) {
-                    temp[0] = 255;
-                    temp[1] = 255;
-                    temp[2] = 255;
+                    temp[0] = 0;
+                    temp[1] = 0;
+                    temp[2] = 0;
                 }
             }
         }

@@ -18,8 +18,8 @@ public class Fractal {
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
 
-        double initialX = x * Fractal.scaling;  //Deja Vu
-        double initialY = y * Fractal.scaling;   //I've just been in this place before
+        double initialX = x * Fractal.scaling + h;  //Deja Vu
+        double initialY = y * Fractal.scaling + k;   //I've just been in this place before
         //Lmao
         int[] temp = Plane.getCoord((int)x, (int)y);
 
@@ -27,8 +27,8 @@ public class Fractal {
             initialY = temp[0] * scaling;
             initialX = temp[1] * scaling;
         } else {
-            initialY = y * Fractal.scaling - k;
-            initialX = x * Fractal.scaling - h;
+            initialY = y * Fractal.scaling + k;
+            initialX = x * Fractal.scaling + h;
         }
 
         //You can add your extended formula here
