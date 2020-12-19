@@ -3,21 +3,16 @@ package FallProject.view;
 import FallProject.model.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.animation.FadeTransition;
-import javafx.animation.Interpolator;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,16 +20,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -87,12 +79,9 @@ public class controller implements Initializable {
     
     public static Rectangle2D screen = Screen.getPrimary().getBounds();
 
-    //added a -100 to be able to view the menu bar.
     public static double screenHeight = screen.getHeight() - 80;
     public static double screenWidth = screen.getWidth();
 
-    //public static double screenHeight = 600;
-    //public static double screenWidth = 600;
     
      public WritableImage img = new WritableImage((int) screenWidth, (int) screenHeight);
 
@@ -176,44 +165,36 @@ public class controller implements Initializable {
         if (event.getSource().equals(Help)) {
             root = FXMLLoader.load(getClass().getResource("help.fxml"));
             scene.getStylesheets().add(getClass().getResource("help.css").toExternalForm());
-           // scene.getRoot().getChildrenUnmodifiable().get(0).setStyle("fx-font-size:" + fontSize +";");
             title = "Help";
             
         } else if (event.getSource().equals(About)) {
             root = FXMLLoader.load(getClass().getResource("about.fxml"));
             scene.getStylesheets().add(getClass().getResource("about.css").toExternalForm());
-           // scene.getRoot().getChildrenUnmodifiable().get(0).setStyle("fx-font-size:" + fontSize +";");
             title = "About";
         }
         else if (event.getSource().equals(Scaling)) {
             root = FXMLLoader.load(getClass().getResource("scaling.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("axis.css").toExternalForm());
             title = "Scaling";
         }
         else if (event.getSource().equals(IterationCount)) {
             root = FXMLLoader.load(getClass().getResource("iterationCount.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("iterationcount.css").toExternalForm());
             title = "Iteration Count";
         }
         else if (event.getSource().equals(Radius)) {
             root = FXMLLoader.load(getClass().getResource("radius.fxml"));
-           // scene.getStylesheets().add("#newRadius {-fx}");
                     
             title = "Radius";
         }
         else if (event.getSource().equals(Position)) {
             root = FXMLLoader.load(getClass().getResource("position.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("position.css").toExternalForm());
             title = "Position";
         }
         else if (event.getSource().equals(ColorGradient)) {
             root = FXMLLoader.load(getClass().getResource("colorGradient.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("colorgradient.css").toExternalForm());
             title = "Color Gradient";
         }
         else if (event.getSource().equals(FontSize)) {
             root = FXMLLoader.load(getClass().getResource("fontSize.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("fontsize.css").toExternalForm());
             title = "Font Size";
         }
 
@@ -229,7 +210,7 @@ public class controller implements Initializable {
     
     @FXML
     private void printFractal() throws IOException {
-        //ReadFile();
+
         
         WritableImage NewImg = new WritableImage((int) screenWidth, (int) screenHeight); 
         PixelWriter writer2 = NewImg.getPixelWriter();
@@ -253,7 +234,7 @@ public class controller implements Initializable {
 
         image.setImage(img);
         
-        //WriteFile();
+ 
         
         
         
@@ -343,19 +324,13 @@ public class controller implements Initializable {
         K = Double.parseDouble(newK.getText());
         Fractal.k = K;
         
-        //printFractal();
+
         
         Fractal.name = "Mandelbrot";
         
       
 
-//        image.setImage(img);
-//
-//       byte imageData[] = FractalRender.GetRender();
-//
-//        writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 3);
-//
-//        image.setImage(img);
+
     }
     @FXML
     private void submitScaling(ActionEvent event){
@@ -364,7 +339,7 @@ public class controller implements Initializable {
         Fractal.setScaling(1/(scale*250));
        
         
-       // printFractal();
+
         
         
         secondaryStage.close();
@@ -381,9 +356,11 @@ public class controller implements Initializable {
     /*The database that we decided to go for a simple one: using a text file 
       where we can both read and write from the file. The text will consist of 
       variables that can compose a fractal. When the user changes to a fractal, 
-      its variables will be written in the text so that we can refer back to it.*/
+      its variables will be written in the text so that we can refer back to it. 
+      Unfortunately, this remains incompleted */
     
-    /*This function reads from the database (file)*/
+    /*This function reads from the database (file)  
+    Note that this is not completed, still need to add stuffs*/
     public void ReadFile() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("data.txt")));
 
@@ -406,7 +383,8 @@ public class controller implements Initializable {
 
     }
     
-    /*This is the function that writes on the database (file)*/
+    /*This is the function that writes on the database (file)
+    Note that this is not completed, still need to stuffs*/ 
     public  void WriteFile() throws IOException {
 
         try {

@@ -9,8 +9,6 @@ public class Fractal {
     public static int breakpoint = 50;
     public static int iterate = 0;
     public static double scaling = 0.004;
-    //0.004 gives no scale lines
-    //Scaling value will sometimes not work, idk why. If it happens just add a 1 and hope for the best
 
     public static double k = 0;
     public static double h = 0;
@@ -18,9 +16,9 @@ public class Fractal {
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
 
-        double initialX = x * Fractal.scaling;  //Deja Vu
-        double initialY = y * Fractal.scaling;   //I've just been in this place before
-        //Lmao
+        double initialX = x * Fractal.scaling;  
+        double initialY = y * Fractal.scaling;   
+        
         int[] temp = Plane.getCoord((int)x, (int)y);
 
         if (Fractal.iterate != 0) {
@@ -31,9 +29,9 @@ public class Fractal {
             initialX = x * Fractal.scaling - h;
         }
 
-        //You can add your extended formula here
+        
         switch (type) {
-//Mykyta
+
             case "Mandelbrot":
                 outputY = (initialX * initialX - initialY * initialY + x* Fractal.scaling);
                 outputX = (2 * initialX * initialY + y* Fractal.scaling);
@@ -65,19 +63,20 @@ public class Fractal {
                 double zx = initialX;
                 double zy = initialY;
 
-                outputX = 2 * zx * zy; //X is for imaginary numbers (yeah i know its inverted idk why)
-                outputY = zx * zx - zy * zy + (1 - 1.6180339887); //Y is for real numbers 
+                outputX = 2 * zx * zy; 
+                outputY = zx * zx - zy * zy + (1 - 1.6180339887);
 
                 break;
-//// 
+
 
             default:
                 outputX = x * Fractal.scaling;
                 outputY = y * Fractal.scaling;
                 break;
         }
-        //Don't forget break; statement!
+        
 
+        
         temp[0] = (int) (Math.floor(outputX / Fractal.scaling));
         temp[1] = (int) (Math.floor(outputY / Fractal.scaling));
 

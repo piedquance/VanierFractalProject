@@ -2,19 +2,14 @@ package FallProject.model;
 
 import FallProject.view.controller;
 import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.nio.ByteBuffer;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.PixelFormat;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.WritableImage;
-import javafx.scene.image.WritablePixelFormat;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
-import javax.imageio.ImageIO;
 
 public class FractalRender {
     
@@ -226,7 +221,7 @@ public class FractalRender {
 
     }
 
-    //You know what this does
+    
     //This method iterates a coordinate until it reaches the limit of iterations or the coordinate escapes the radius after the breakpoint
     public static void iterate(int x, int y) {
 
@@ -336,7 +331,7 @@ public class FractalRender {
         }
     }
 
-    //This method attempts to generate a gradient. It doesn't work very well.
+    //This method creates the color gradient 
     public static int[][] Gradient(int spacing) {
         int[][] gradient = new int[spacing][3];
         int level;
@@ -380,7 +375,8 @@ public class FractalRender {
         return gradient;
     }
 
-    //Koch
+    /*The Koch Fractal works entirely different from the others fractal. 
+    As a result, we had to do a seperate tasks/methods for it*/
     private static double angle;
 
     private static String string = "";
