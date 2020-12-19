@@ -1,8 +1,13 @@
 package FallProject.view;
 
 import FallProject.model.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.ByteBuffer;
@@ -186,7 +191,8 @@ public class controller implements Initializable {
    
     }
     @FXML
-    private void printFractal() {
+    private void printFractal() throws IOException {
+        ReadFile();
         
         WritableImage NewImg = new WritableImage((int) screenWidth, (int) screenHeight); 
         PixelWriter writer2 = NewImg.getPixelWriter();
@@ -213,13 +219,14 @@ public class controller implements Initializable {
 
         image.setImage(img);
         
+        WriteFile();
         
-        System.out.println("BRRRRRRRRRRR");
-        WriteFile("data");
+        
+        
         
     }
     @FXML
-    private void FractalHandlerJulia(ActionEvent event) {
+    private void FractalHandlerJulia(ActionEvent event) throws IOException {
 
         Fractal.name = "Julia";
         Fractal.radius = 2;
@@ -227,7 +234,7 @@ public class controller implements Initializable {
 
     }
     @FXML
-    private void FractalHandlerMandelbrot(ActionEvent event) {
+    private void FractalHandlerMandelbrot(ActionEvent event) throws IOException {
 
         Fractal.name = "Mandelbrot";
         Fractal.radius = 2;
@@ -235,7 +242,7 @@ public class controller implements Initializable {
 
     }
     @FXML
-    private void FractalHandlerNewton(ActionEvent event) {
+    private void FractalHandlerNewton(ActionEvent event) throws IOException {
 
         Fractal.name = "Newton";
         Fractal.radius = 1999999999;
@@ -243,7 +250,7 @@ public class controller implements Initializable {
 
     }
     @FXML
-    private void FractalHandlerkKoch(ActionEvent event) {
+    private void FractalHandlerkKoch(ActionEvent event) throws IOException {
 
         Fractal.name = "Koch";
         Fractal.radius = 2;
@@ -261,7 +268,7 @@ public class controller implements Initializable {
     }
     
     @FXML
-    private void submitIterationCount(ActionEvent event){
+    private void submitIterationCount(ActionEvent event) throws IOException{
         int iterationCount;
         iterationCount = Integer.parseInt(newItCount.getText());
         if(Fractal.name == "Koch"){
@@ -273,7 +280,7 @@ public class controller implements Initializable {
         printFractal();
     }
     @FXML
-    private void submitRadius(ActionEvent event){
+    private void submitRadius(ActionEvent event) throws IOException{
         double radius;
         radius = Double.parseDouble(newRadius.getText());
         Fractal.setRadius(radius);
@@ -291,7 +298,7 @@ public class controller implements Initializable {
         secondaryStage.close();
     }
     @FXML
-    private void submitPosition(ActionEvent event){
+    private void submitPosition(ActionEvent event) throws IOException{
         secondaryStage.close();
         
         double H;
@@ -352,44 +359,46 @@ public class controller implements Initializable {
       its variables will be written in the text so that we can refer back to it.*/
     
     /*This function reads from the database (file)*/
-    public static void ReadFile(File file) {
+    public void ReadFile() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("data.txt")));
 
-        try {
-            Scanner scanner = new Scanner(file);
-            while(scanner.hasNext()) {
-                String fractalName = scanner.next();
-                scanner.useDelimiter("|");
-                int iterationCount = scanner.nextInt();
-                scanner.useDelimiter("|");
-                int radius = scanner.nextInt();
-                
-                Fractal.iterationLimit = iterationCount;
-                Fractal.setRadius(radius);
-                Fractal.name = fractalName;
-            }
-            scanner.close();
+        Scanner scanner = new Scanner(reader);
+        while (scanner.hasNext()) {
+            String stringRead = scanner.nextLine();
+            String[] values = stringRead.split(" ");
+
+            String name = values[0];
+            System.out.println(values[0]);
+            int iterationLimit = Integer.parseInt(values[1]);
+            double radius = Double.parseDouble(values[2]);
+            double scaling = Double.parseDouble(values[3]);
+            double h = Double.parseDouble(values[4]);
+            double k = Double.parseDouble(values[5]);
+
             
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File is not found");
-            e.printStackTrace();
         }
+        scanner.close();
+
     }
     
-    /*This it the function that writes on the database (file)*/
-    public static void WriteFile(String file) {
+    /*This is the function that writes on the database (file)*/
+    public  void WriteFile() throws IOException {
 
         try {
-            PrintWriter writer = new PrintWriter(file);
+            URL url = getClass().getResource("data.txt");
+            FileWriter fileWriter = new FileWriter(url.getPath());
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
             String FractalName = Fractal.name;
-            String iterationCount = "" + Fractal.iterationLimit;
+            String iterationLimit = "" + Fractal.iterationLimit;
             String radius = "" + Fractal.getRadius();
-            String scaling = "" +Fractal.scaling;
-            String h = ""+Fractal.h;
-            String k = ""+ Fractal.k;
-            
-            writer.println(FractalName + " | " + iterationCount + " | " + radius + " | " + scaling + " | " + h + " | " + k);
+            String scaling = "" + Fractal.scaling;
+            String h = "" + Fractal.h;
+            String k = "" + Fractal.k;
+
+            writer.write("\n" + FractalName + " " + iterationLimit + " " + radius + " " + scaling + " " + h + " " + k);
             writer.close();
+            System.out.println("Sucess");
 
         } catch (FileNotFoundException e) {
             System.out.println("File is not found");
