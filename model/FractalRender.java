@@ -236,7 +236,7 @@ public class FractalRender {
 
         for (int n = 0; n < Fractal.iterationLimit; n++) {
 
-            Fractal.Formula(xd, yd, Fractal.name);
+            Fractal.Formula(x, y, Fractal.name);
 
             int temp[] = Plane.getCoord(x, y);
 
@@ -314,7 +314,7 @@ public class FractalRender {
                 int mappedX = 0 - (Plane.grid[0].length / 2 - x);
                 int mappedY = 0 + (Plane.grid.length / 2 - y);
 
-                if (Fractal.CheckCoord(temp[0] * Fractal.scaling, temp[1] * Fractal.scaling)) {
+                if (Fractal.CheckCoord(temp[0], temp[1])) {
 
                     //We assign a color based on the number of iterations.
                     int i = (temp[2]) % (colors);
