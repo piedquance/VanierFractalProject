@@ -211,7 +211,16 @@ public class FractalRender {
             //System.out.println(string);
         } else {
             Plane.resetGrid();
+            
+            try {
             iterateAll();
+            } catch(ArrayIndexOutOfBoundsException e) {
+               String temp = String.valueOf(Fractal.scaling);
+               temp += "1";
+               Fractal.scaling = Double.parseDouble(temp);
+               iterateAll();
+            }
+            
             addColor();
             return Plane.toByte();
         }
@@ -316,15 +325,20 @@ public class FractalRender {
 
                     if (((mappedX) * Fractal.scaling) == 0) {
                         temp[0] = 255;
+                        temp[1] = 0;
+                        temp[2] = 0;
+                        
                     }
                     if (((mappedY) * Fractal.scaling) == 0) {
                         temp[0] = 255;
+                        temp[1] = 0;
+                        temp[2] = 0;
                     }
                     //If it's in the set, the pixel is black
                 } else if (Fractal.Color()) {
-                    temp[0] = 0;
-                    temp[1] = 0;
-                    temp[2] = 0;
+                    temp[0] = 255;
+                    temp[1] = 255;
+                    temp[2] = 255;
                 }
             }
         }
