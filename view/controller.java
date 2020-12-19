@@ -101,6 +101,13 @@ public class controller implements Initializable {
     public PixelFormat<ByteBuffer> pixelFormat = PixelFormat.getByteBgraInstance();
     
     
+    public static boolean RadiusCheck = false;
+    public static boolean IterationCheck = false;
+    public static boolean PositionCheck = false;
+    public static boolean ScalingCheck = false;
+    public static boolean ColorCheck = false;
+    public static boolean FontCheck = false;
+    
     /**
      * Initializes the controller class.
      */
@@ -123,16 +130,46 @@ public class controller implements Initializable {
          imageData = FractalRender.GetRender();
 
         writer.setPixels(0, 0, (int) image.getFitWidth(), (int) image.getFitHeight(), pixelFormat, imageData, 0, (int) image.getFitWidth() * 4);
-
+        
         image.setImage(img);
         String p = "";
         
+        }
+        
+        if(IterationCheck) {
+            newItCount.promptTextProperty().setValue(String.valueOf(Fractal.iterationLimit));
+            IterationCheck = false;
+        } else if(RadiusCheck) {
+            newRadius.promptTextProperty().setValue(String.valueOf(Fractal.radius));
+            RadiusCheck = false;
+        } else if(PositionCheck) {
+            newH.promptTextProperty().setValue(String.valueOf(Fractal.h));
+            newK.promptTextProperty().setValue(String.valueOf(Fractal.k));
+            PositionCheck = false;
+        } else if(ScalingCheck) {
+            scaleFactor.promptTextProperty().setValue(String.valueOf(1 / (Fractal.scaling * 250)));
+            ScalingCheck = false;
+        } else if(ColorCheck) {
+            ColorNumber.promptTextProperty().setValue(String.valueOf(FractalRender.gradientName));
+            ColorCheck = false;
+        } else if(FontCheck) {
+            fontsizetext.promptTextProperty().setValue(String.valueOf(fontSize));
+            FontCheck = false;
         }
          
     }
     
     @FXML
     private void menuButtons(ActionEvent event) throws Exception {
+        
+        if(event.getSource().equals(IterationCount)) IterationCheck = true;
+        if(event.getSource().equals(Radius)) RadiusCheck = true;
+        if(event.getSource().equals(Position)) PositionCheck = true;
+        if(event.getSource().equals(Scaling)) ScalingCheck = true;
+        if(event.getSource().equals(ColorGradient)) ColorCheck = true;
+        if(event.getSource().equals(FontSize)) FontCheck = true;
+         
+        
         Parent root = new Pane();
         String title = " ";
         Scene scene = new Scene(root);
@@ -160,7 +197,8 @@ public class controller implements Initializable {
         }
         else if (event.getSource().equals(Radius)) {
             root = FXMLLoader.load(getClass().getResource("radius.fxml"));
-//            scene.getStylesheets().add(getClass().getResource("radius.css").toExternalForm());
+           // scene.getStylesheets().add("#newRadius {-fx}");
+                    
             title = "Radius";
         }
         else if (event.getSource().equals(Position)) {
@@ -178,8 +216,7 @@ public class controller implements Initializable {
 //            scene.getStylesheets().add(getClass().getResource("fontsize.css").toExternalForm());
             title = "Font Size";
         }
-       
-        
+
         scene = new Scene(root);
         
         secondaryStage.setTitle(title);
@@ -188,8 +225,8 @@ public class controller implements Initializable {
         if(event.getSource().equals(About) || event.getSource().equals(Help)) secondaryStage.getScene().getRoot().getChildrenUnmodifiable().get(0).setStyle("-fx-font-family:monospace; -fx-font-size:" + fontSize +";");
         
         secondaryStage.show();
-   
     }
+    
     @FXML
     private void printFractal() throws IOException {
         ReadFile();
@@ -211,9 +248,6 @@ public class controller implements Initializable {
         transition.setFromValue(0);
         transition.setToValue(1.0);
         transition.play();
-        
-      
-        
 
         writer.setPixels(0, 0, (int) imageX, (int) imageY, pixelFormat, imageData, 0, (int) imageX * 4);
 
@@ -274,10 +308,12 @@ public class controller implements Initializable {
         if(Fractal.name == "Koch"){
             FractalRender.setLevel(iterationCount);
         }
-        else{Fractal.setIterationLimit(iterationCount);}
+        else{
+            Fractal.setIterationLimit(iterationCount);
+            Fractal.setBreakpoint(iterationCount/4);
+        };
         
         secondaryStage.close();
-        printFractal();
     }
     @FXML
     private void submitRadius(ActionEvent event) throws IOException{
@@ -286,7 +322,6 @@ public class controller implements Initializable {
         Fractal.setRadius(radius);
         
         secondaryStage.close();
-        printFractal();
         
     }
     @FXML
@@ -311,10 +346,8 @@ public class controller implements Initializable {
         //printFractal();
         
         Fractal.name = "Mandelbrot";
-
-        printFractal();
         
-        
+      
 
 //        image.setImage(img);
 //
@@ -330,7 +363,7 @@ public class controller implements Initializable {
         System.err.println("scaling");
         
         double scale = Double.parseDouble(scaleFactor.getText());
-        Fractal.setScaling(scale);
+        Fractal.setScaling(1/(scale*250));
         
         System.out.println(Fractal.scaling);
         

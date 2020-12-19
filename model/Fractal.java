@@ -6,7 +6,7 @@ public class Fractal {
 
     public static double radius = "Newton".equals(name) ? 1999999999 : 2;
     public static int iterationLimit = 200;
-    public static int breakpoint = 20;
+    public static int breakpoint = 50;
     public static int iterate = 0;
     public static double scaling = 0.004;
     //0.004 gives no scale lines
@@ -15,32 +15,28 @@ public class Fractal {
     public static double k = 0;
     public static double h = 0;
 
-
-
-
-
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
 
-        double initialX = x;  //Deja Vu
-        double initialY = y;   //I've just been in this place before
+        double initialX = x * Fractal.scaling;  //Deja Vu
+        double initialY = y * Fractal.scaling;   //I've just been in this place before
         //Lmao
-        int[] temp = Plane.getCoord((int) Math.floor(x / Fractal.scaling), (int) Math.floor(y / Fractal.scaling));
+        int[] temp = Plane.getCoord((int)x, (int)y);
 
         if (Fractal.iterate != 0) {
             initialY = temp[0] * scaling - k;
             initialX = temp[1] * scaling - h;
         } else {
-            initialY = y - k;
-            initialX = x - h;
+            initialY = y * Fractal.scaling - k;
+            initialX = x * Fractal.scaling - h;
         }
 
         //You can add your extended formula here
         switch (type) {
 //Mykyta
             case "Mandelbrot":
-                outputY = initialX * initialX - initialY * initialY + x;
-                outputX = 2 * initialX * initialY + y;
+                outputY = (initialX * initialX - initialY * initialY + x* Fractal.scaling);
+                outputX = (2 * initialX * initialY + y* Fractal.scaling);
                 break;
             case "Newton":
                 double z1 = initialX;
@@ -76,8 +72,8 @@ public class Fractal {
 //// 
 
             default:
-                outputX = x;
-                outputY = y;
+                outputX = x * Fractal.scaling;
+                outputY = y * Fractal.scaling;
                 break;
         }
         //Don't forget break; statement!
@@ -159,6 +155,14 @@ public class Fractal {
         Fractal.scaling = scaling;
     }
 
+    public static int getBreakpoint() {
+        return breakpoint;
+    }
+    public static void setBreakpoint(int breakpoint) {
+        Fractal.breakpoint = breakpoint;
+    }
+
+    
 }
 
 

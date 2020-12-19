@@ -211,7 +211,16 @@ public class FractalRender {
             //System.out.println(string);
         } else {
             Plane.resetGrid();
+            
+            try {
             iterateAll();
+            } catch(ArrayIndexOutOfBoundsException e) {
+               String temp = String.valueOf(Fractal.scaling);
+               temp += "1";
+               Fractal.scaling = Double.parseDouble(temp);
+               iterateAll();
+            }
+            
             addColor();
             return Plane.toByte();
         }
@@ -227,7 +236,7 @@ public class FractalRender {
 
         for (int n = 0; n < Fractal.iterationLimit; n++) {
 
-            Fractal.Formula(xd, yd, Fractal.name);
+            Fractal.Formula(x, y, Fractal.name);
 
             int temp[] = Plane.getCoord(x, y);
 
@@ -305,7 +314,7 @@ public class FractalRender {
                 int mappedX = 0 - (Plane.grid[0].length / 2 - x);
                 int mappedY = 0 + (Plane.grid.length / 2 - y);
 
-                if (Fractal.CheckCoord(temp[0] * Fractal.scaling, temp[1] * Fractal.scaling)) {
+                if (Fractal.CheckCoord(temp[0], temp[1])) {
 
                     //We assign a color based on the number of iterations.
                     int i = (temp[2]) % (colors);
@@ -316,9 +325,14 @@ public class FractalRender {
 
                     if (((mappedX) * Fractal.scaling) == 0) {
                         temp[0] = 255;
+                        temp[1] = 0;
+                        temp[2] = 0;
+                        
                     }
                     if (((mappedY) * Fractal.scaling) == 0) {
                         temp[0] = 255;
+                        temp[1] = 0;
+                        temp[2] = 0;
                     }
                     //If it's in the set, the pixel is black
                 } else if (Fractal.Color()) {
@@ -429,7 +443,7 @@ public class FractalRender {
         
         currPt = new Point((int)(controller.screenWidth/2-side/2),(int) (controller.screenHeight/2 - s + s/3));
         
-        string += "M " + currPt.x + " " + currPt.y;
+        string = "M " + currPt.x + " " + currPt.y;
         
         angle = 0;
         for (int i = 1; i <= 3; i++) {
