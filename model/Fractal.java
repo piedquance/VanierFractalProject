@@ -18,25 +18,25 @@ public class Fractal {
     public static void Formula(double x, double y, String type) {
         double outputX, outputY;
 
-        double initialX = x * Fractal.scaling + h;  //Deja Vu
-        double initialY = y * Fractal.scaling + k;   //I've just been in this place before
+        double initialX = x * Fractal.scaling;  //Deja Vu
+        double initialY = y * Fractal.scaling;   //I've just been in this place before
         //Lmao
         int[] temp = Plane.getCoord((int)x, (int)y);
 
         if (Fractal.iterate != 0) {
-            initialY = temp[0] * scaling;
-            initialX = temp[1] * scaling;
+            initialY = temp[0] * scaling - k;
+            initialX = temp[1] * scaling - h;
         } else {
-            initialY = y * Fractal.scaling + k;
-            initialX = x * Fractal.scaling + h;
+            initialY = y * Fractal.scaling - k;
+            initialX = x * Fractal.scaling - h;
         }
 
         //You can add your extended formula here
         switch (type) {
 //Mykyta
             case "Mandelbrot":
-                outputY = initialX * initialX - initialY * initialY + x* Fractal.scaling;
-                outputX = 2 * initialX * initialY + y* Fractal.scaling;
+                outputY = (initialX * initialX - initialY * initialY + x* Fractal.scaling);
+                outputX = (2 * initialX * initialY + y* Fractal.scaling);
                 break;
             case "Newton":
                 double z1 = initialX;
